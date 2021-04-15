@@ -14,7 +14,7 @@ import {AbstractCrudObject} from './../abstract-crud-object';
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
 export default class AdsInsights extends AbstractCrudObject {
-  static get Fields () {
+  static get Fields (): Object {
     return Object.freeze({
       account_currency: 'account_currency',
       account_id: 'account_id',
@@ -183,6 +183,7 @@ export default class AdsInsights extends AbstractCrudObject {
     return Object.freeze({
       conversion: 'conversion',
       impression: 'impression',
+      mixed: 'mixed',
     });
   }
   static get Breakdowns (): Object {

@@ -19,7 +19,7 @@ import ProductCatalog from './product-catalog';
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
 export default class SystemUser extends AbstractCrudObject {
-  static get Fields () {
+  static get Fields (): Object {
     return Object.freeze({
       created_by: 'created_by',
       created_time: 'created_time',
@@ -30,25 +30,6 @@ export default class SystemUser extends AbstractCrudObject {
     });
   }
 
-  static get Role (): Object {
-    return Object.freeze({
-      admin: 'ADMIN',
-      ads_rights_reviewer: 'ADS_RIGHTS_REVIEWER',
-      developer: 'DEVELOPER',
-      employee: 'EMPLOYEE',
-      finance_analyst: 'FINANCE_ANALYST',
-      finance_editor: 'FINANCE_EDITOR',
-      finance_edit_task: 'FINANCE_EDIT_TASK',
-      finance_view_task: 'FINANCE_VIEW_TASK',
-      moderate_task: 'MODERATE_TASK',
-      operate_task: 'OPERATE_TASK',
-      partner_center_admin: 'PARTNER_CENTER_ADMIN',
-      partner_center_analyst: 'PARTNER_CENTER_ANALYST',
-      partner_center_education: 'PARTNER_CENTER_EDUCATION',
-      partner_center_marketing: 'PARTNER_CENTER_MARKETING',
-      partner_center_operations: 'PARTNER_CENTER_OPERATIONS',
-    });
-  }
 
   getAssignedAdAccounts (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(

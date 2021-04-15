@@ -23,9 +23,10 @@ import AdReportRun from './ad-report-run';
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
 export default class Campaign extends AbstractCrudObject {
-  static get Fields () {
+  static get Fields (): Object {
     return Object.freeze({
       account_id: 'account_id',
+      ad_strategy_id: 'ad_strategy_id',
       adlabels: 'adlabels',
       bid_strategy: 'bid_strategy',
       boosted_object_id: 'boosted_object_id',
@@ -136,12 +137,19 @@ export default class Campaign extends AbstractCrudObject {
       local_awareness: 'LOCAL_AWARENESS',
       messages: 'MESSAGES',
       offer_claims: 'OFFER_CLAIMS',
+      outcome_leads: 'OUTCOME_LEADS',
       page_likes: 'PAGE_LIKES',
       post_engagement: 'POST_ENGAGEMENT',
       product_catalog_sales: 'PRODUCT_CATALOG_SALES',
       reach: 'REACH',
       store_visits: 'STORE_VISITS',
       video_views: 'VIDEO_VIEWS',
+    });
+  }
+  static get SmartPromotionType (): Object {
+    return Object.freeze({
+      guided_creation: 'GUIDED_CREATION',
+      smart_app_promotion: 'SMART_APP_PROMOTION',
     });
   }
   static get SpecialAdCategories (): Object {

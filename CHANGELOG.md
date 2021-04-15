@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## v9.0.0
+
+
+### Added
+- `delivery_category` field to Content for Conversions API.
+
+## v8.0.3
+
+
+### Changed
+- Stop validating and hashing already hashed input values for Conversions API
+
 ## v8.0.2
 
 ### Added

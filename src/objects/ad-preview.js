@@ -14,7 +14,7 @@ import {AbstractCrudObject} from './../abstract-crud-object';
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
 export default class AdPreview extends AbstractCrudObject {
-  static get Fields () {
+  static get Fields (): Object {
     return Object.freeze({
       body: 'body',
     });
@@ -52,6 +52,7 @@ export default class AdPreview extends AbstractCrudObject {
       right_column_standard: 'RIGHT_COLUMN_STANDARD',
       suggested_video_desktop: 'SUGGESTED_VIDEO_DESKTOP',
       suggested_video_mobile: 'SUGGESTED_VIDEO_MOBILE',
+      watch_feed_home: 'WATCH_FEED_HOME',
       watch_feed_mobile: 'WATCH_FEED_MOBILE',
     });
   }
