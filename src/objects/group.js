@@ -23,7 +23,7 @@ import AdVideo from './ad-video';
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
 export default class Group extends AbstractCrudObject {
-  static get Fields () {
+  static get Fields (): Object {
     return Object.freeze({
       archived: 'archived',
       cover: 'cover',
@@ -94,6 +94,7 @@ export default class Group extends AbstractCrudObject {
       school_class: 'SCHOOL_CLASS',
       sorority: 'SORORITY',
       sports: 'SPORTS',
+      streamer: 'STREAMER',
       study_group: 'STUDY_GROUP',
       support: 'SUPPORT',
       teammates: 'TEAMMATES',
@@ -150,6 +151,7 @@ export default class Group extends AbstractCrudObject {
       school_class: 'SCHOOL_CLASS',
       sorority: 'SORORITY',
       sports: 'SPORTS',
+      streamer: 'STREAMER',
       study_group: 'STUDY_GROUP',
       support: 'SUPPORT',
       teammates: 'TEAMMATES',

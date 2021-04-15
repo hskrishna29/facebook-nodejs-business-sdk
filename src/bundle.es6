@@ -8,6 +8,7 @@
 
 export { default as FacebookAdsApi } from './../src/api';
 export { default as FacebookAdsApiBatch } from './../src/api-batch';
+export { default as AbstractCrudObject } from './abstract-crud-object';
 export { default as APIRequest } from './../src/api-request';
 export { default as APIResponse } from './../src/api-response';
 export { default as CrashReporter } from './../src/crash-reporter';
@@ -22,6 +23,7 @@ export { default as HttpMethod } from './../src/objects/serverside/http-method';
 export { default as HttpServiceClientConfig } from './../src/objects/serverside/http-service-client-config';
 export { default as HttpServiceInterface } from './../src/objects/serverside/http-service-interface';
 export { default as BatchProcessor } from './../src/objects/serverside/batch-processor';
+export { default as ServerSideUtils } from './../src/objects/serverside/utils';
 
 export { default as Ad } from './../src/objects/ad';
 export { default as AdAccount } from './../src/objects/ad-account';
@@ -72,7 +74,6 @@ export { default as AdCreative } from './../src/objects/ad-creative';
 export { default as AdCreativeAdDisclaimer } from './../src/objects/ad-creative-ad-disclaimer';
 export { default as AdCreativeCollectionThumbnailInfo } from './../src/objects/ad-creative-collection-thumbnail-info';
 export { default as AdCreativeInsights } from './../src/objects/ad-creative-insights';
-export { default as AdCreativeInstagramBrandedContent } from './../src/objects/ad-creative-instagram-branded-content';
 export { default as AdCreativeInteractiveComponentsSpec } from './../src/objects/ad-creative-interactive-components-spec';
 export { default as AdCreativeLinkData } from './../src/objects/ad-creative-link-data';
 export { default as AdCreativeLinkDataAppLinkSpec } from './../src/objects/ad-creative-link-data-app-link-spec';
