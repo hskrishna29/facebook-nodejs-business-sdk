@@ -8,7 +8,6 @@
  */
 import {AbstractCrudObject} from './../abstract-crud-object';
 import Cursor from './../cursor';
-import AdPlacePageSet from './ad-place-page-set';
 import AdsPixel from './ads-pixel';
 import Application from './application';
 import CustomConversion from './custom-conversion';
@@ -34,26 +33,18 @@ export default class AdStudyObjective extends AbstractCrudObject {
 
   static get Type (): Object {
     return Object.freeze({
+      aep_conversion: 'AEP_CONVERSION',
       brand: 'BRAND',
       brandlift: 'BRANDLIFT',
       ftl: 'FTL',
       mae: 'MAE',
       mai: 'MAI',
+      mpc_conversion: 'MPC_CONVERSION',
       nonsales: 'NONSALES',
       partner: 'PARTNER',
       sales: 'SALES',
       telco: 'TELCO',
     });
-  }
-
-  getAdPlacePageSets (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AdPlacePageSet,
-      fields,
-      params,
-      fetchFirstPage,
-      '/ad_place_page_sets'
-    );
   }
 
   getAdsPixels (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {

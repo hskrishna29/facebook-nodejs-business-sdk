@@ -16,7 +16,7 @@ import AdNetworkAnalyticsAsyncQueryResult from './ad-network-analytics-async-que
 import AdsPixel from './ads-pixel';
 import AdPlacement from './ad-placement';
 import BusinessAssetGroup from './business-asset-group';
-import OracleTransaction from './oracle-transaction';
+import OmegaCustomerTrx from './omega-customer-trx';
 import BusinessUnit from './business-unit';
 import BusinessUser from './business-user';
 import CustomConversion from './custom-conversion';
@@ -111,8 +111,26 @@ export default class Business extends AbstractCrudObject {
     return Object.freeze({
       advertise: 'ADVERTISE',
       analyze: 'ANALYZE',
-      draft: 'DRAFT',
+      cashier_role: 'CASHIER_ROLE',
+      create_content: 'CREATE_CONTENT',
       manage: 'MANAGE',
+      manage_jobs: 'MANAGE_JOBS',
+      manage_leads: 'MANAGE_LEADS',
+      messaging: 'MESSAGING',
+      moderate: 'MODERATE',
+      moderate_community: 'MODERATE_COMMUNITY',
+      pages_messaging: 'PAGES_MESSAGING',
+      pages_messaging_subscriptions: 'PAGES_MESSAGING_SUBSCRIPTIONS',
+      profile_plus_advertise: 'PROFILE_PLUS_ADVERTISE',
+      profile_plus_analyze: 'PROFILE_PLUS_ANALYZE',
+      profile_plus_create_content: 'PROFILE_PLUS_CREATE_CONTENT',
+      profile_plus_facebook_access: 'PROFILE_PLUS_FACEBOOK_ACCESS',
+      profile_plus_full_control: 'PROFILE_PLUS_FULL_CONTROL',
+      profile_plus_manage: 'PROFILE_PLUS_MANAGE',
+      profile_plus_messaging: 'PROFILE_PLUS_MESSAGING',
+      profile_plus_moderate: 'PROFILE_PLUS_MODERATE',
+      read_page_mailboxes: 'READ_PAGE_MAILBOXES',
+      view_monetization_insights: 'VIEW_MONETIZATION_INSIGHTS',
     });
   }
   static get SurveyBusinessType (): Object {
@@ -140,6 +158,8 @@ export default class Business extends AbstractCrudObject {
       profile_plus_advertise: 'PROFILE_PLUS_ADVERTISE',
       profile_plus_analyze: 'PROFILE_PLUS_ANALYZE',
       profile_plus_create_content: 'PROFILE_PLUS_CREATE_CONTENT',
+      profile_plus_facebook_access: 'PROFILE_PLUS_FACEBOOK_ACCESS',
+      profile_plus_full_control: 'PROFILE_PLUS_FULL_CONTROL',
       profile_plus_manage: 'PROFILE_PLUS_MANAGE',
       profile_plus_messaging: 'PROFILE_PLUS_MESSAGING',
       profile_plus_moderate: 'PROFILE_PLUS_MODERATE',
@@ -297,7 +317,7 @@ export default class Business extends AbstractCrudObject {
 
   getBusinessInvoices (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
-      OracleTransaction,
+      OmegaCustomerTrx,
       fields,
       params,
       fetchFirstPage,
@@ -359,15 +379,6 @@ export default class Business extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/client_ad_accounts'
-    );
-  }
-
-  createClientAdAccount (fields: Array<string>, params: Object = {}): Promise<Business> {
-    return this.createEdge(
-      '/client_ad_accounts',
-      fields,
-      params,
-      Business
     );
   }
 
@@ -542,6 +553,16 @@ export default class Business extends AbstractCrudObject {
     );
   }
 
+  getExtendedCreditApplications (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/extendedcreditapplications'
+    );
+  }
+
   getExtendedCredits (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       ExtendedCredit,
@@ -549,15 +570,6 @@ export default class Business extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/extendedcredits'
-    );
-  }
-
-  createFranchiseProgram (fields: Array<string>, params: Object = {}): Promise<AbstractObject> {
-    return this.createEdge(
-      '/franchise_programs',
-      fields,
-      params,
-      
     );
   }
 
@@ -887,6 +899,16 @@ export default class Business extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/received_sharing_agreements'
+    );
+  }
+
+  getSpacoDataSetCollections (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/spaco_dataset_collections'
     );
   }
 

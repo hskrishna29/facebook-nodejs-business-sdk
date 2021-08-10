@@ -9,15 +9,16 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * AdCreativePortraitCustomizations
+ * AdAccountIosFourteenCampaignLimits
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class AdCreativePortraitCustomizations extends AbstractCrudObject {
+export default class AdAccountIosFourteenCampaignLimits extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      carousel_delivery_mode: 'carousel_delivery_mode',
-      specifications: 'specifications',
+      campaign_group_limit: 'campaign_group_limit',
+      campaign_group_limits_details: 'campaign_group_limits_details',
+      campaign_limit: 'campaign_limit',
     });
   }
 

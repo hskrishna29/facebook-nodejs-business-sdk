@@ -12,7 +12,7 @@ import ServerSideUtils from './utils';
 /**
  * UserData represents the User Data Parameters(user_data) of a Conversions API Event Request.
  * 'user_data' is a set of identifiers Facebook can use for targeted attribution. See Custom Audiences from CRM Data for details on how to normalize and hash the data you send.
- * @see {@link https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/parameters#user}
+ * @see {@link https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters}
  */
 
 export default class UserData {
@@ -51,8 +51,8 @@ export default class UserData {
 	 * @param {String} date_of_birth A date of birth given as year, month, and day in YYYYMMDD format.
 	 * @param {String} city A city in lower-case without spaces or punctuation.
 	 * @param {String} state A two-letter state code in lowercase.
-	 * @param {String} country A two-letter country code in lowercase.
 	 * @param {String} zip Postal code of the city in your country standard
+	 * @param {String} country A two-letter country code in lowercase.
 	 * @param {String} external_id Any unique ID from the advertiser,
 	 * @param {String} client_ip_address The IP address of the browser corresponding to the event.
 	 * @param {String} client_user_agent The user agent for the browser corresponding to the event.
@@ -68,18 +68,39 @@ export default class UserData {
 	constructor(email: string, phone: string, gender: string, first_name: string, last_name: string, date_of_birth: string,
 		city: string, state: string, zip: string, country: string, external_id: string, client_ip_address: string, client_user_agent: string,
 		fbp: string, fbc: string, subscription_id: string, fb_login_id: string, lead_id: string, dobd: string, dobm: string, doby: string) {
-
-		this._emails = new Array(email);
-		this._phones = new Array(phone);
-		this._genders = new Array(gender);
-		this._first_names = new Array(first_name);
-		this._last_names = new Array(last_name);
-		this._dates_of_birth = new Array(date_of_birth);
-		this._cities = new Array(city);
-		this._states = new Array(state);
-		this._countries = new Array(country);
-		this._zips = new Array(zip);
-		this._external_ids = new Array(external_id);
+		if (email != null) {
+			this._emails = new Array(email);
+		}
+		if (phone != null) {
+			this._phones = new Array(phone);
+		}
+		if (gender != null) {
+			this._genders = new Array(gender);
+		}
+		if (first_name != null) {
+			this._first_names = new Array(first_name);
+		}
+		if (last_name != null) {
+			this._last_names = new Array(last_name);
+		}
+		if (date_of_birth != null) {
+			this._dates_of_birth = new Array(date_of_birth);
+		}
+		if (city != null) {
+			this._cities = new Array(city);
+		}
+		if (state != null) {
+			this._states = new Array(state);
+		}
+		if (country != null) {
+			this._countries = new Array(country);
+		}
+		if (zip != null) {
+			this._zips = new Array(zip);
+		}
+		if (external_id != null) {
+			this._external_ids = new Array(external_id);
+		}
 		this._client_ip_address = client_ip_address;
 		this._client_user_agent = client_user_agent;
 		this._fbp = fbp;
@@ -782,7 +803,7 @@ export default class UserData {
 	/**
 	 * Gets the fbc for the user data.
 	 * fbc is the Facebook click ID value stored in the _fbc browser cookie under your domain.
-	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/parameters#fbc},
+	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters#fbc},
 	 * You can also generate this value from a fbclid query parameter.
 	 */
 	get fbc() {
@@ -792,7 +813,7 @@ export default class UserData {
 	/**
 	 * Sets the fbc for the user data.
 	 * @param fbc is the Facebook click ID value stored in the _fbc browser cookie under your domain.
-	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/parameters#fbc},
+	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters#fbc},
 	 * You can also generate this value from a fbclid query parameter.
 	 */
 	set fbc(fbc: string) {
@@ -802,7 +823,7 @@ export default class UserData {
 	/**
 	 * Sets the fbc for the user data.
 	 * @param {String} fbc is the Facebook click ID value stored in the _fbc browser cookie under your domain.
-	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/parameters#fbc},
+	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters#fbc},
 	 * You can also generate this value from a fbclid query parameter.
 	 */
 	setFbc(fbc: string) : UserData {
@@ -814,7 +835,7 @@ export default class UserData {
 	/**
 	 * Gets the fbp for the user data.
 	 * fbp is Facebook browser ID value stored in the _fbp browser cookie under your domain.
-	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/parameters#fbc},
+	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters#fbp},
 	 */
 	get fbp() {
 		return this._fbp;
@@ -823,7 +844,7 @@ export default class UserData {
 	/**
 	 * Sets the fbp for the user data.
 	 * @param fbp is Facebook browser ID value stored in the _fbp browser cookie under your domain.
-	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/parameters#fbc},
+	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters#fbp},
 	 */
 	set fbp(fbp: string) {
 		this._fbp = fbp;
@@ -832,7 +853,7 @@ export default class UserData {
 	/**
 	 * Sets the fbp for the user data.
 	 * @param {String} fbp is Facebook browser ID value stored in the _fbp browser cookie under your domain.
-	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/parameters#fbc},
+	 * See Managing fbc and fbp Parameters for how to get this value @see {@link https://developers.facebook.com/docs/marketing-api/conversions-api/parameters/customer-information-parameters#fbp},
 	 */
 	setFbp(fbp: string) : UserData {
 		this._fbp = fbp;
@@ -1099,7 +1120,7 @@ export default class UserData {
 		}
 
 		if (this.external_ids) {
-			userData['external_id'] = this.external_ids;
+			userData['external_id'] = this.dedupArray(this.external_ids);
 		}
 
 		if (this.client_ip_address) {
@@ -1162,9 +1183,17 @@ export default class UserData {
   * @returns {string[]} dedupped and normalized values.
   */
   normalizeAndHashMultiValues(arr: string[], fieldName: String): string[]{
-    let dedupSet = new Set(
-      arr.map(value => ServerSideUtils.normalizeAndHash(value, fieldName))
-    );
-    return Array.from(dedupSet);
+    let normalizedArray = arr.map(value => ServerSideUtils.normalizeAndHash(value, fieldName));
+    return this.dedupArray(normalizedArray);
   }
+
+	/**
+	 * Returns the deduped payload for the given array of values.
+	 * This can be applied to fields that do not require normalization or hashing.
+	 * @returns {string[]} deduped values.
+	 */
+	dedupArray(arr: string[]): string[]{
+		let dedupSet = new Set(arr);
+		return Array.from(dedupSet);
+	}
 }
