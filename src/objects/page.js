@@ -18,6 +18,7 @@ import PageCallToAction from './page-call-to-action';
 import CanvasBodyElement from './canvas-body-element';
 import Canvas from './canvas';
 import URL from './url';
+import PageCommerceEligibility from './page-commerce-eligibility';
 import CommerceMerchantSettings from './commerce-merchant-settings';
 import CommerceOrder from './commerce-order';
 import CommercePayout from './commerce-payout';
@@ -26,6 +27,7 @@ import UnifiedThread from './unified-thread';
 import PageUserMessageThreadLabel from './page-user-message-thread-label';
 import CustomUserSettings from './custom-user-settings';
 import Event from './event';
+import ImageCopyright from './image-copyright';
 import AdVideo from './ad-video';
 import InsightsResult from './insights-result';
 import InstagramUser from './instagram-user';
@@ -50,7 +52,6 @@ import PageSettings from './page-settings';
 import CommerceMerchantSettingsSetupStatus from './commerce-merchant-settings-setup-status';
 import Tab from './tab';
 import PageThreadOwner from './page-thread-owner';
-import EventTour from './event-tour';
 import VideoCopyrightRule from './video-copyright-rule';
 import VideoCopyright from './video-copyright';
 import VideoList from './video-list';
@@ -105,6 +106,7 @@ export default class Page extends AbstractCrudObject {
       fan_count: 'fan_count',
       featured_video: 'featured_video',
       features: 'features',
+      followers_count: 'followers_count',
       food_styles: 'food_styles',
       founded: 'founded',
       general_info: 'general_info',
@@ -647,6 +649,13 @@ export default class Page extends AbstractCrudObject {
     );
   }
 
+  deleteBusinessData (params: Object = {}): Promise<*> {
+    return super.deleteEdge(
+      '/business_data',
+      params
+    );
+  }
+
   createBusinessDatum (fields: Array<string>, params: Object = {}): Promise<Page> {
     return this.createEdge(
       '/business_data',
@@ -704,13 +713,6 @@ export default class Page extends AbstractCrudObject {
     );
   }
 
-  deleteClaimedUrls (params: Object = {}): Promise<*> {
-    return super.deleteEdge(
-      '/claimed_urls',
-      params
-    );
-  }
-
   getClaimedUrls (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       URL,
@@ -718,6 +720,16 @@ export default class Page extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/claimed_urls'
+    );
+  }
+
+  getCommerceEligibility (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      PageCommerceEligibility,
+      fields,
+      params,
+      fetchFirstPage,
+      '/commerce_eligibility'
     );
   }
 
@@ -890,6 +902,25 @@ export default class Page extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/global_brand_children'
+    );
+  }
+
+  getImageCopyrights (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      ImageCopyright,
+      fields,
+      params,
+      fetchFirstPage,
+      '/image_copyrights'
+    );
+  }
+
+  createImageCopyright (fields: Array<string>, params: Object = {}): Promise<ImageCopyright> {
+    return this.createEdge(
+      '/image_copyrights',
+      fields,
+      params,
+      ImageCopyright
     );
   }
 
@@ -1411,6 +1442,13 @@ export default class Page extends AbstractCrudObject {
     );
   }
 
+  deleteTabs (params: Object = {}): Promise<*> {
+    return super.deleteEdge(
+      '/tabs',
+      params
+    );
+  }
+
   getTabs (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       Tab,
@@ -1471,7 +1509,7 @@ export default class Page extends AbstractCrudObject {
 
   getTours (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
-      EventTour,
+      AbstractObject,
       fields,
       params,
       fetchFirstPage,

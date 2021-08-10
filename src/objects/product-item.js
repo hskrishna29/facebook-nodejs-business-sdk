@@ -9,6 +9,7 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
+import CatalogItemChannelsToIntegrityStatus from './catalog-item-channels-to-integrity-status';
 import ProductSet from './product-set';
 
 /**
@@ -24,6 +25,7 @@ export default class ProductItem extends AbstractCrudObject {
       additional_variant_attributes: 'additional_variant_attributes',
       age_group: 'age_group',
       applinks: 'applinks',
+      ar_data: 'ar_data',
       availability: 'availability',
       brand: 'brand',
       capability_to_review_status: 'capability_to_review_status',
@@ -54,6 +56,7 @@ export default class ProductItem extends AbstractCrudObject {
       mobile_link: 'mobile_link',
       name: 'name',
       ordering_index: 'ordering_index',
+      parent_product_id: 'parent_product_id',
       pattern: 'pattern',
       price: 'price',
       product_catalog: 'product_catalog',
@@ -150,6 +153,7 @@ export default class ProductItem extends AbstractCrudObject {
       fb_aprl_clothing: 'FB_APRL_CLOTHING',
       fb_aprl_costume: 'FB_APRL_COSTUME',
       fb_aprl_cstm: 'FB_APRL_CSTM',
+      fb_aprl_formal: 'FB_APRL_FORMAL',
       fb_aprl_handbag: 'FB_APRL_HANDBAG',
       fb_aprl_jewelry: 'FB_APRL_JEWELRY',
       fb_aprl_shoe: 'FB_APRL_SHOE',
@@ -344,6 +348,16 @@ export default class ProductItem extends AbstractCrudObject {
       fb_vehi: 'FB_VEHI',
       fb_vehi_part: 'FB_VEHI_PART',
     });
+  }
+
+  getChannelsToIntegrityStatus (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      CatalogItemChannelsToIntegrityStatus,
+      fields,
+      params,
+      fetchFirstPage,
+      '/channels_to_integrity_status'
+    );
   }
 
   getProductSets (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {

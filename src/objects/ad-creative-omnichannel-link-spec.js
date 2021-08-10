@@ -9,26 +9,16 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * OfflineTermsOfService
+ * AdCreativeOmnichannelLinkSpec
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class OfflineTermsOfService extends AbstractCrudObject {
+export default class AdCreativeOmnichannelLinkSpec extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      accept_time: 'accept_time',
-      id: 'id',
-      signed_by_user: 'signed_by_user',
+      app: 'app',
+      web: 'web',
     });
   }
 
-
-  
-  get (fields: Array<string>, params: Object = {}): OfflineTermsOfService {
-    // $FlowFixMe : Support Generic Types
-    return this.read(
-      fields,
-      params
-    );
-  }
 }

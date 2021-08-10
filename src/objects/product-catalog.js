@@ -191,6 +191,15 @@ export default class ProductCatalog extends AbstractCrudObject {
     );
   }
 
+  createAutomotiveModel (fields: Array<string>, params: Object = {}): Promise<AutomotiveModel> {
+    return this.createEdge(
+      '/automotive_models',
+      fields,
+      params,
+      AutomotiveModel
+    );
+  }
+
   createBatch (fields: Array<string>, params: Object = {}): Promise<ProductCatalog> {
     return this.createEdge(
       '/batch',
