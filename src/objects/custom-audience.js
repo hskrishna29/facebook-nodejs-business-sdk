@@ -28,6 +28,7 @@ export default class CustomAudience extends AbstractCrudObject {
       data_source: 'data_source',
       data_source_types: 'data_source_types',
       datafile_custom_audience_uploading_status: 'datafile_custom_audience_uploading_status',
+      delete_time: 'delete_time',
       delivery_status: 'delivery_status',
       description: 'description',
       excluded_custom_audiences: 'excluded_custom_audiences',
@@ -181,6 +182,15 @@ export default class CustomAudience extends AbstractCrudObject {
   createUser (fields: Array<string>, params: Object = {}): Promise<CustomAudience> {
     return this.createEdge(
       '/users',
+      fields,
+      params,
+      CustomAudience
+    );
+  }
+
+  createUsersReplace (fields: Array<string>, params: Object = {}): Promise<CustomAudience> {
+    return this.createEdge(
+      '/usersreplace',
       fields,
       params,
       CustomAudience

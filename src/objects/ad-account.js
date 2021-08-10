@@ -40,6 +40,7 @@ import AdPreview from './ad-preview';
 import AdsInsights from './ads-insights';
 import AdReportRun from './ad-report-run';
 import InstagramUser from './instagram-user';
+import AdAccountIosFourteenCampaignLimits from './ad-account-ios-fourteen-campaign-limits';
 import AdAccountMatchedSearchApplicationsEdgeData from './ad-account-matched-search-applications-edge-data';
 import AdAccountMaxBid from './ad-account-max-bid';
 import MinimumBudget from './minimum-budget';
@@ -49,7 +50,6 @@ import Page from './page';
 import PublisherBlockList from './publisher-block-list';
 import AdAccountReachEstimate from './ad-account-reach-estimate';
 import ReachFrequencyPrediction from './reach-frequency-prediction';
-import AdAccountRoas from './ad-account-roas';
 import SavedAudience from './saved-audience';
 import AdAccountSubscribedApps from './ad-account-subscribed-apps';
 import AdAccountTargetingUnified from './ad-account-targeting-unified';
@@ -67,7 +67,6 @@ export default class AdAccount extends AbstractCrudObject {
     return Object.freeze({
       account_id: 'account_id',
       account_status: 'account_status',
-      ad_account_creation_request: 'ad_account_creation_request',
       ad_account_promotable_objects: 'ad_account_promotable_objects',
       age: 'age',
       agency_client_declaration: 'agency_client_declaration',
@@ -188,17 +187,11 @@ export default class AdAccount extends AbstractCrudObject {
       zar: 'ZAR',
     });
   }
-  static get PermittedTasks (): Object {
-    return Object.freeze({
-      advertise: 'ADVERTISE',
-      analyze: 'ANALYZE',
-      manage: 'MANAGE',
-    });
-  }
   static get Tasks (): Object {
     return Object.freeze({
       advertise: 'ADVERTISE',
       analyze: 'ANALYZE',
+      draft: 'DRAFT',
       manage: 'MANAGE',
     });
   }
@@ -288,6 +281,16 @@ export default class AdAccount extends AbstractCrudObject {
     );
   }
 
+  getAdSavedKeywords (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/ad_saved_keywords'
+    );
+  }
+
   getAdStudies (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       AdStudy,
@@ -295,6 +298,16 @@ export default class AdAccount extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/ad_studies'
+    );
+  }
+
+  getAdCloudPlayables (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/adcloudplayables'
     );
   }
 
@@ -570,15 +583,6 @@ export default class AdAccount extends AbstractCrudObject {
     );
   }
 
-  createAgency (fields: Array<string>, params: Object = {}): Promise<AdAccount> {
-    return this.createEdge(
-      '/agencies',
-      fields,
-      params,
-      AdAccount
-    );
-  }
-
   getApplications (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       Application,
@@ -650,15 +654,6 @@ export default class AdAccount extends AbstractCrudObject {
       fields,
       params,
       AdAsyncRequestSet
-    );
-  }
-
-  createAudienceReplace (fields: Array<string>, params: Object = {}): Promise<AbstractObject> {
-    return this.createEdge(
-      '/audiencereplace',
-      fields,
-      params,
-      
     );
   }
 
@@ -872,6 +867,16 @@ export default class AdAccount extends AbstractCrudObject {
     );
   }
 
+  getIosFourteenCampaignLimits (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AdAccountIosFourteenCampaignLimits,
+      fields,
+      params,
+      fetchFirstPage,
+      '/ios_fourteen_campaign_limits'
+    );
+  }
+
   getMatchedSearchApplications (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       AdAccountMatchedSearchApplicationsEdgeData,
@@ -989,16 +994,6 @@ export default class AdAccount extends AbstractCrudObject {
     );
   }
 
-  getRoas (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AdAccountRoas,
-      fields,
-      params,
-      fetchFirstPage,
-      '/roas'
-    );
-  }
-
   getSavedAudiences (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       SavedAudience,
@@ -1006,15 +1001,6 @@ export default class AdAccount extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/saved_audiences'
-    );
-  }
-
-  createSponsoredMessageAd (fields: Array<string>, params: Object = {}): Promise<AbstractObject> {
-    return this.createEdge(
-      '/sponsored_message_ads',
-      fields,
-      params,
-      
     );
   }
 

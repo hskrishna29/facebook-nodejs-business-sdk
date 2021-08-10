@@ -18,10 +18,13 @@ export default class SavedAudience extends AbstractCrudObject {
     return Object.freeze({
       account: 'account',
       approximate_count: 'approximate_count',
+      approximate_count_64bit: 'approximate_count_64bit',
+      delete_time: 'delete_time',
       description: 'description',
       extra_info: 'extra_info',
       id: 'id',
       name: 'name',
+      operation_status: 'operation_status',
       permission_for_actions: 'permission_for_actions',
       run_status: 'run_status',
       sentence_lines: 'sentence_lines',

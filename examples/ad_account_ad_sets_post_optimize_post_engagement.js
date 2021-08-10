@@ -35,8 +35,8 @@ fields = [
 params = {
   'name' : 'My First Adset',
   'lifetime_budget' : '20000',
-  'start_time' : '2020-10-22T22:17:19-0700',
-  'end_time' : '2020-11-01T22:17:19-0800',
+  'start_time' : '2021-04-18T09:43:43-0700',
+  'end_time' : '2021-04-28T09:43:43-0700',
   'campaign_id' : '<adCampaignLinkClicksID>',
   'bid_amount' : '500',
   'billing_event' : 'IMPRESSIONS',

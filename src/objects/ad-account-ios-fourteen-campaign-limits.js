@@ -9,27 +9,17 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * FriendList
+ * AdAccountIosFourteenCampaignLimits
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class FriendList extends AbstractCrudObject {
+export default class AdAccountIosFourteenCampaignLimits extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      id: 'id',
-      list_type: 'list_type',
-      name: 'name',
-      owner: 'owner',
+      campaign_group_limit: 'campaign_group_limit',
+      campaign_group_limits_details: 'campaign_group_limits_details',
+      campaign_limit: 'campaign_limit',
     });
   }
 
-
-  
-  get (fields: Array<string>, params: Object = {}): FriendList {
-    // $FlowFixMe : Support Generic Types
-    return this.read(
-      fields,
-      params
-    );
-  }
 }

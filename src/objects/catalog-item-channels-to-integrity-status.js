@@ -9,25 +9,16 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * ReadOnlyAnalyticsUserPropertyConfig
+ * CatalogItemChannelsToIntegrityStatus
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class ReadOnlyAnalyticsUserPropertyConfig extends AbstractCrudObject {
+export default class CatalogItemChannelsToIntegrityStatus extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      active_properties: 'active_properties',
-      id: 'id',
+      channels: 'channels',
+      rejection_information: 'rejection_information',
     });
   }
 
-
-  
-  get (fields: Array<string>, params: Object = {}): ReadOnlyAnalyticsUserPropertyConfig {
-    // $FlowFixMe : Support Generic Types
-    return this.read(
-      fields,
-      params
-    );
-  }
 }

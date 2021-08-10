@@ -9,25 +9,33 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * OfflineTermsOfService
+ * WhatsAppBusinessProfile
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class OfflineTermsOfService extends AbstractCrudObject {
+export default class WhatsAppBusinessProfile extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      accept_time: 'accept_time',
       id: 'id',
-      signed_by_user: 'signed_by_user',
+      name_verification: 'name_verification',
+      whatsapp_business_api_data: 'whatsapp_business_api_data',
     });
   }
 
 
   
-  get (fields: Array<string>, params: Object = {}): OfflineTermsOfService {
+  get (fields: Array<string>, params: Object = {}): WhatsAppBusinessProfile {
     // $FlowFixMe : Support Generic Types
     return this.read(
       fields,
+      params
+    );
+  }
+
+  // $FlowFixMe : Support Generic Types
+  update (fields: Array<string>, params: Object = {}): WhatsAppBusinessProfile {
+    // $FlowFixMe : Support Generic Types
+    return super.update(
       params
     );
   }

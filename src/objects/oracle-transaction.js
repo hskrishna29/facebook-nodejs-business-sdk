@@ -39,12 +39,6 @@ export default class OracleTransaction extends AbstractCrudObject {
     });
   }
 
-  static get Type (): Object {
-    return Object.freeze({
-      cm: 'CM',
-      inv: 'INV',
-    });
-  }
 
   getCampaigns (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
