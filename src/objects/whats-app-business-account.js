@@ -48,17 +48,9 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
   }
   static get Category (): Object {
     return Object.freeze({
-      account_update: 'ACCOUNT_UPDATE',
-      alert_update: 'ALERT_UPDATE',
-      appointment_update: 'APPOINTMENT_UPDATE',
-      auto_reply: 'AUTO_REPLY',
-      issue_resolution: 'ISSUE_RESOLUTION',
-      payment_update: 'PAYMENT_UPDATE',
-      personal_finance_update: 'PERSONAL_FINANCE_UPDATE',
-      reservation_update: 'RESERVATION_UPDATE',
-      shipping_update: 'SHIPPING_UPDATE',
-      ticket_update: 'TICKET_UPDATE',
-      transportation_update: 'TRANSPORTATION_UPDATE',
+      marketing: 'MARKETING',
+      otp: 'OTP',
+      transactional: 'TRANSACTIONAL',
     });
   }
 
@@ -86,6 +78,16 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
       params,
       WhatsAppBusinessAccount,
       pathOverride,
+    );
+  }
+
+  getConversationAnalytics (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/conversation_analytics'
     );
   }
 

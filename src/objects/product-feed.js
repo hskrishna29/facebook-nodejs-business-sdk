@@ -62,6 +62,12 @@ export default class ProductFeed extends AbstractCrudObject {
       tilde: 'TILDE',
     });
   }
+  static get IngestionSourceType (): Object {
+    return Object.freeze({
+      primary_feed: 'primary_feed',
+      supplementary_feed: 'supplementary_feed',
+    });
+  }
   static get QuotedFieldsMode (): Object {
     return Object.freeze({
       autodetect: 'AUTODETECT',
@@ -97,12 +103,6 @@ export default class ProductFeed extends AbstractCrudObject {
       transactable_items: 'TRANSACTABLE_ITEMS',
       vehicles: 'VEHICLES',
       vehicle_offer: 'VEHICLE_OFFER',
-    });
-  }
-  static get IngestionSourceType (): Object {
-    return Object.freeze({
-      primary_feed: 'PRIMARY_FEED',
-      supplementary_feed: 'SUPPLEMENTARY_FEED',
     });
   }
   static get ItemSubType (): Object {
@@ -143,16 +143,6 @@ export default class ProductFeed extends AbstractCrudObject {
       language_and_country: 'LANGUAGE_AND_COUNTRY',
       local: 'LOCAL',
     });
-  }
-
-  getAutoMarkets (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
-      fields,
-      params,
-      fetchFirstPage,
-      '/auto_markets'
-    );
   }
 
   getAutomotiveModels (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
@@ -202,16 +192,6 @@ export default class ProductFeed extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/hotels'
-    );
-  }
-
-  getMediaTitles (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
-      fields,
-      params,
-      fetchFirstPage,
-      '/media_titles'
     );
   }
 

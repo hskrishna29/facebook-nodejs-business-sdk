@@ -16,6 +16,7 @@ import AutomotiveModel from './automotive-model';
 import ProductCatalogCategory from './product-catalog-category';
 import CheckBatchRequestStatus from './check-batch-request-status';
 import CollaborativeAdsShareSettings from './collaborative-ads-share-settings';
+import ProductCatalogDataSource from './product-catalog-data-source';
 import Destination from './destination';
 import ProductCatalogDiagnosticGroup from './product-catalog-diagnostic-group';
 import ProductEventStat from './product-event-stat';
@@ -49,6 +50,7 @@ export default class ProductCatalog extends AbstractCrudObject {
       feed_count: 'feed_count',
       id: 'id',
       is_catalog_segment: 'is_catalog_segment',
+      latest_feed_upload_session: 'latest_feed_upload_session',
       name: 'name',
       product_count: 'product_count',
       store_catalog_settings: 'store_catalog_settings',
@@ -195,16 +197,6 @@ export default class ProductCatalog extends AbstractCrudObject {
     );
   }
 
-  getAutoMarkets (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
-      fields,
-      params,
-      fetchFirstPage,
-      '/auto_markets'
-    );
-  }
-
   getAutomotiveModels (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       AutomotiveModel,
@@ -212,16 +204,6 @@ export default class ProductCatalog extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/automotive_models'
-    );
-  }
-
-  createAutomotiveModel (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AutomotiveModel> {
-    return this.createEdge(
-      '/automotive_models',
-      fields,
-      params,
-      AutomotiveModel,
-      pathOverride,
     );
   }
 
@@ -275,6 +257,16 @@ export default class ProductCatalog extends AbstractCrudObject {
     );
   }
 
+  getCollaborativeAdsLsbImageBank (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/collaborative_ads_lsb_image_bank'
+    );
+  }
+
   getCollaborativeAdsShareSettings (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       CollaborativeAdsShareSettings,
@@ -282,6 +274,26 @@ export default class ProductCatalog extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/collaborative_ads_share_settings'
+    );
+  }
+
+  createCpasLsbImageBank (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
+    return this.createEdge(
+      '/cpas_lsb_image_bank',
+      fields,
+      params,
+      null,
+      pathOverride,
+    );
+  }
+
+  getDataSources (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      ProductCatalogDataSource,
+      fields,
+      params,
+      fetchFirstPage,
+      '/data_sources'
     );
   }
 
@@ -432,13 +444,13 @@ export default class ProductCatalog extends AbstractCrudObject {
     );
   }
 
-  getMediaTitles (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
+  createMediaTitle (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
+    return this.createEdge(
+      '/media_titles',
       fields,
       params,
-      fetchFirstPage,
-      '/media_titles'
+      null,
+      pathOverride,
     );
   }
 
