@@ -15,7 +15,6 @@ import AdCreative from './ad-creative';
 import AdRule from './ad-rule';
 import Ad from './ad';
 import AdAsyncRequest from './ad-async-request';
-import ContentDeliveryReport from './content-delivery-report';
 import AdCampaignDeliveryEstimate from './ad-campaign-delivery-estimate';
 import AdsInsights from './ads-insights';
 import AdReportRun from './ad-report-run';
@@ -42,6 +41,7 @@ export default class AdSet extends AbstractCrudObject {
       billing_event: 'billing_event',
       budget_remaining: 'budget_remaining',
       campaign: 'campaign',
+      campaign_attribution: 'campaign_attribution',
       campaign_id: 'campaign_id',
       configured_status: 'configured_status',
       created_time: 'created_time',
@@ -142,6 +142,7 @@ export default class AdSet extends AbstractCrudObject {
       landing_page_views: 'LANDING_PAGE_VIEWS',
       lead_generation: 'LEAD_GENERATION',
       link_clicks: 'LINK_CLICKS',
+      messaging_appointment_conversion: 'MESSAGING_APPOINTMENT_CONVERSION',
       messaging_purchase_conversion: 'MESSAGING_PURCHASE_CONVERSION',
       none: 'NONE',
       offsite_conversions: 'OFFSITE_CONVERSIONS',
@@ -330,16 +331,6 @@ export default class AdSet extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/asyncadrequests'
-    );
-  }
-
-  getContentDeliveryReport (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      ContentDeliveryReport,
-      fields,
-      params,
-      fetchFirstPage,
-      '/content_delivery_report'
     );
   }
 

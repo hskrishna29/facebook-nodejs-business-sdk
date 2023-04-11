@@ -11,6 +11,7 @@ import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
 import InstagramInsightsResult from './instagram-insights-result';
 import IGMedia from './ig-media';
+import UserPageOneTimeOptInTokenSettings from './user-page-one-time-opt-in-token-settings';
 
 /**
  * IGUser
@@ -30,6 +31,7 @@ export default class IGUser extends AbstractCrudObject {
       mentioned_comment: 'mentioned_comment',
       mentioned_media: 'mentioned_media',
       name: 'name',
+      owner_business: 'owner_business',
       profile_picture_url: 'profile_picture_url',
       shopping_product_tag_eligibility: 'shopping_product_tag_eligibility',
       shopping_review_status: 'shopping_review_status',
@@ -126,6 +128,16 @@ export default class IGUser extends AbstractCrudObject {
       params,
       null,
       pathOverride,
+    );
+  }
+
+  getNotificationMessageTokens (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      UserPageOneTimeOptInTokenSettings,
+      fields,
+      params,
+      fetchFirstPage,
+      '/notification_message_tokens'
     );
   }
 
