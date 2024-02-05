@@ -1,11 +1,13 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
+ /*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  * All rights reserved.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
+ *
  * @flow
  */
+
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
@@ -65,6 +67,7 @@ export default class ProductCatalogDiagnosticGroup extends AbstractCrudObject {
       attributes_missing: 'ATTRIBUTES_MISSING',
       category: 'CATEGORY',
       checkout: 'CHECKOUT',
+      da_visibility_issues: 'DA_VISIBILITY_ISSUES',
       image_quality: 'IMAGE_QUALITY',
       low_quality_title_and_description: 'LOW_QUALITY_TITLE_AND_DESCRIPTION',
       policy_violation: 'POLICY_VIOLATION',
@@ -91,6 +94,7 @@ export default class ProductCatalogDiagnosticGroup extends AbstractCrudObject {
       attributes_missing: 'ATTRIBUTES_MISSING',
       category: 'CATEGORY',
       checkout: 'CHECKOUT',
+      da_visibility_issues: 'DA_VISIBILITY_ISSUES',
       image_quality: 'IMAGE_QUALITY',
       low_quality_title_and_description: 'LOW_QUALITY_TITLE_AND_DESCRIPTION',
       policy_violation: 'POLICY_VIOLATION',

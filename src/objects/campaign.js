@@ -1,11 +1,13 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
+ /*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  * All rights reserved.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
+ *
  * @flow
  */
+
 import {AbstractCrudObject} from './../abstract-crud-object';
 import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
@@ -13,6 +15,7 @@ import AdStudy from './ad-study';
 import AdRule from './ad-rule';
 import Ad from './ad';
 import AdSet from './ad-set';
+import HighDemandPeriod from './high-demand-period';
 import AdsInsights from './ads-insights';
 import AdReportRun from './ad-report-run';
 
@@ -25,8 +28,6 @@ export default class Campaign extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
       account_id: 'account_id',
-      ad_strategy_group_id: 'ad_strategy_group_id',
-      ad_strategy_id: 'ad_strategy_id',
       adlabels: 'adlabels',
       bid_strategy: 'bid_strategy',
       boosted_object_id: 'boosted_object_id',
@@ -34,6 +35,7 @@ export default class Campaign extends AbstractCrudObject {
       budget_rebalance_flag: 'budget_rebalance_flag',
       budget_remaining: 'budget_remaining',
       buying_type: 'buying_type',
+      campaign_group_active_time: 'campaign_group_active_time',
       can_create_brand_lift_study: 'can_create_brand_lift_study',
       can_use_spend_cap: 'can_use_spend_cap',
       configured_status: 'configured_status',
@@ -42,6 +44,7 @@ export default class Campaign extends AbstractCrudObject {
       effective_status: 'effective_status',
       has_secondary_skadnetwork_reporting: 'has_secondary_skadnetwork_reporting',
       id: 'id',
+      is_budget_schedule_enabled: 'is_budget_schedule_enabled',
       is_skadnetwork_attribution: 'is_skadnetwork_attribution',
       issues_info: 'issues_info',
       last_budget_toggling_time: 'last_budget_toggling_time',
@@ -497,6 +500,16 @@ export default class Campaign extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/adsets'
+    );
+  }
+
+  createBudgetSchedule (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<HighDemandPeriod> {
+    return this.createEdge(
+      '/budget_schedules',
+      fields,
+      params,
+      HighDemandPeriod,
+      pathOverride,
     );
   }
 

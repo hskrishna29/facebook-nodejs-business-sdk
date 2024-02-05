@@ -1,11 +1,13 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
+ /*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  * All rights reserved.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
+ *
  * @flow
  */
+
 import {AbstractCrudObject} from './../abstract-crud-object';
 import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
@@ -26,7 +28,10 @@ export default class Ad extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
       account_id: 'account_id',
+      ad_active_time: 'ad_active_time',
       ad_review_feedback: 'ad_review_feedback',
+      ad_schedule_end_time: 'ad_schedule_end_time',
+      ad_schedule_start_time: 'ad_schedule_start_time',
       adlabels: 'adlabels',
       adset: 'adset',
       adset_id: 'adset_id',

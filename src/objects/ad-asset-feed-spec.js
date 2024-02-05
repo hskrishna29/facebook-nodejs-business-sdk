@@ -1,11 +1,13 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
+ /*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  * All rights reserved.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
+ *
  * @flow
  */
+
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
@@ -18,6 +20,7 @@ export default class AdAssetFeedSpec extends AbstractCrudObject {
     return Object.freeze({
       ad_formats: 'ad_formats',
       additional_data: 'additional_data',
+      app_product_page_id: 'app_product_page_id',
       asset_customization_rules: 'asset_customization_rules',
       autotranslate: 'autotranslate',
       bodies: 'bodies',
@@ -30,7 +33,11 @@ export default class AdAssetFeedSpec extends AbstractCrudObject {
       groups: 'groups',
       images: 'images',
       link_urls: 'link_urls',
+      message_extensions: 'message_extensions',
+      onsite_destinations: 'onsite_destinations',
       optimization_type: 'optimization_type',
+      reasons_to_shop: 'reasons_to_shop',
+      shops_bundle: 'shops_bundle',
       titles: 'titles',
       videos: 'videos',
     });
@@ -41,6 +48,7 @@ export default class AdAssetFeedSpec extends AbstractCrudObject {
       add_to_cart: 'ADD_TO_CART',
       apply_now: 'APPLY_NOW',
       audio_call: 'AUDIO_CALL',
+      book_now: 'BOOK_NOW',
       book_travel: 'BOOK_TRAVEL',
       buy: 'BUY',
       buy_now: 'BUY_NOW',
@@ -48,6 +56,7 @@ export default class AdAssetFeedSpec extends AbstractCrudObject {
       call: 'CALL',
       call_me: 'CALL_ME',
       call_now: 'CALL_NOW',
+      confirm: 'CONFIRM',
       contact: 'CONTACT',
       contact_us: 'CONTACT_US',
       donate: 'DONATE',
@@ -62,9 +71,11 @@ export default class AdAssetFeedSpec extends AbstractCrudObject {
       get_directions: 'GET_DIRECTIONS',
       get_offer: 'GET_OFFER',
       get_offer_view: 'GET_OFFER_VIEW',
+      get_promotions: 'GET_PROMOTIONS',
       get_quote: 'GET_QUOTE',
       get_showtimes: 'GET_SHOWTIMES',
       get_started: 'GET_STARTED',
+      inquire_now: 'INQUIRE_NOW',
       install_app: 'INSTALL_APP',
       install_mobile_app: 'INSTALL_MOBILE_APP',
       learn_more: 'LEARN_MORE',
@@ -73,7 +84,6 @@ export default class AdAssetFeedSpec extends AbstractCrudObject {
       listen_now: 'LISTEN_NOW',
       message_page: 'MESSAGE_PAGE',
       mobile_download: 'MOBILE_DOWNLOAD',
-      moments: 'MOMENTS',
       no_button: 'NO_BUTTON',
       open_instant_app: 'OPEN_INSTANT_APP',
       open_link: 'OPEN_LINK',

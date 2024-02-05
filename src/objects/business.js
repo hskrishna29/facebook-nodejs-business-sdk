@@ -1,11 +1,13 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
+ /*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  * All rights reserved.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
+ *
  * @flow
  */
+
 import {AbstractCrudObject} from './../abstract-crud-object';
 import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
@@ -28,19 +30,24 @@ import CPASAdvertiserPartnershipRecommendation from './cpas-advertiser-partnersh
 import CommerceMerchantSettings from './commerce-merchant-settings';
 import CPASBusinessSetupConfig from './cpas-business-setup-config';
 import CPASMerchantConfig from './cpas-merchant-config';
+import BusinessCreativeFolder from './business-creative-folder';
 import CreditCard from './credit-card';
 import EventSourceGroup from './event-source-group';
 import ExtendedCredit from './extended-credit';
+import BusinessImage from './business-image';
 import BusinessAssetSharingAgreement from './business-asset-sharing-agreement';
 import InstagramUser from './instagram-user';
 import IGUser from './ig-user';
 import OfflineConversionDataSet from './offline-conversion-data-set';
+import OpenBridgeConfiguration from './open-bridge-configuration';
 import BusinessAdAccountRequest from './business-ad-account-request';
 import BusinessApplicationRequest from './business-application-request';
 import BusinessPageRequest from './business-page-request';
 import BusinessRoleRequest from './business-role-request';
 import ProfilePictureSource from './profile-picture-source';
+import WhatsAppBusinessPreVerifiedPhoneNumber from './whats-app-business-pre-verified-phone-number';
 import SystemUser from './system-user';
+import AdVideo from './ad-video';
 
 /**
  * Business
@@ -68,6 +75,7 @@ export default class Business extends AbstractCrudObject {
       two_factor_type: 'two_factor_type',
       updated_by: 'updated_by',
       updated_time: 'updated_time',
+      user_access_expire_time: 'user_access_expire_time',
       verification_status: 'verification_status',
       vertical: 'vertical',
       vertical_id: 'vertical_id',
@@ -97,6 +105,7 @@ export default class Business extends AbstractCrudObject {
       luxury: 'LUXURY',
       marketing: 'MARKETING',
       non_profit: 'NON_PROFIT',
+      not_set: 'NOT_SET',
       organizations_and_associations: 'ORGANIZATIONS_AND_ASSOCIATIONS',
       other: 'OTHER',
       professional_services: 'PROFESSIONAL_SERVICES',
@@ -425,6 +434,16 @@ export default class Business extends AbstractCrudObject {
       fields,
       params,
       AdAccount,
+      pathOverride,
+    );
+  }
+
+  createAddPhoneNumber (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<Business> {
+    return this.createEdge(
+      '/add_phone_numbers',
+      fields,
+      params,
+      Business,
       pathOverride,
     );
   }
@@ -783,6 +802,16 @@ export default class Business extends AbstractCrudObject {
     );
   }
 
+  createCreativeFolder (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<BusinessCreativeFolder> {
+    return this.createEdge(
+      '/creative_folders',
+      fields,
+      params,
+      BusinessCreativeFolder,
+      pathOverride,
+    );
+  }
+
   getCreditCards (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       CreditCard,
@@ -850,6 +879,16 @@ export default class Business extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/extendedcredits'
+    );
+  }
+
+  createImage (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<BusinessImage> {
+    return this.createEdge(
+      '/images',
+      fields,
+      params,
+      BusinessImage,
+      pathOverride,
     );
   }
 
@@ -960,6 +999,26 @@ export default class Business extends AbstractCrudObject {
       fields,
       params,
       OfflineConversionDataSet,
+      pathOverride,
+    );
+  }
+
+  getOpenBridgeConfigurations (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      OpenBridgeConfiguration,
+      fields,
+      params,
+      fetchFirstPage,
+      '/openbridge_configurations'
+    );
+  }
+
+  createOpenBridgeConfiguration (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<OpenBridgeConfiguration> {
+    return this.createEdge(
+      '/openbridge_configurations',
+      fields,
+      params,
+      OpenBridgeConfiguration,
       pathOverride,
     );
   }
@@ -1118,6 +1177,16 @@ export default class Business extends AbstractCrudObject {
     );
   }
 
+  getPartnerAccountLinking (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/partner_account_linking'
+    );
+  }
+
   createPartnerPremiumOption (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
     return this.createEdge(
       '/partner_premium_options',
@@ -1218,6 +1287,16 @@ export default class Business extends AbstractCrudObject {
     );
   }
 
+  getPreVerifiedNumbers (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      WhatsAppBusinessPreVerifiedPhoneNumber,
+      fields,
+      params,
+      fetchFirstPage,
+      '/preverified_numbers'
+    );
+  }
+
   getReceivedAudienceSharingRequests (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       BusinessAssetSharingAgreement,
@@ -1231,6 +1310,33 @@ export default class Business extends AbstractCrudObject {
   createSetupManagedPartnerAdAccount (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<Business> {
     return this.createEdge(
       '/setup_managed_partner_adaccounts',
+      fields,
+      params,
+      Business,
+      pathOverride,
+    );
+  }
+
+  deleteSharePreVerifiedNumbers (params: Object = {}): Promise<*> {
+    return super.deleteEdge(
+      '/share_preverified_numbers',
+      params
+    );
+  }
+
+  createSharePreVerifiedNumber (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<Business> {
+    return this.createEdge(
+      '/share_preverified_numbers',
+      fields,
+      params,
+      Business,
+      pathOverride,
+    );
+  }
+
+  createSystemUserAccessToken (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<Business> {
+    return this.createEdge(
+      '/system_user_access_tokens',
       fields,
       params,
       Business,
@@ -1265,6 +1371,16 @@ export default class Business extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/third_party_measurement_report_dataset'
+    );
+  }
+
+  createVideo (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AdVideo> {
+    return this.createEdge(
+      '/videos',
+      fields,
+      params,
+      AdVideo,
+      pathOverride,
     );
   }
 

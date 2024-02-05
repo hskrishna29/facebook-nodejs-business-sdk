@@ -1,16 +1,19 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
+ /*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  * All rights reserved.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
+ *
  * @flow
  */
+
 import {AbstractCrudObject} from './../abstract-crud-object';
 import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
 import AdAccount from './ad-account';
 import Ad from './ad';
+import CustomAudienceSalts from './custom-audience-salts';
 import CustomAudienceSession from './custom-audience-session';
 import CustomAudiencesharedAccountInfo from './custom-audienceshared-account-info';
 
@@ -104,6 +107,7 @@ export default class CustomAudience extends AbstractCrudObject {
     return Object.freeze({
       app: 'APP',
       bag_of_accounts: 'BAG_OF_ACCOUNTS',
+      bidding: 'BIDDING',
       claim: 'CLAIM',
       custom: 'CUSTOM',
       engagement: 'ENGAGEMENT',
@@ -113,8 +117,10 @@ export default class CustomAudience extends AbstractCrudObject {
       measurement: 'MEASUREMENT',
       offline_conversion: 'OFFLINE_CONVERSION',
       partner: 'PARTNER',
+      primary: 'PRIMARY',
       regulated_categories_audience: 'REGULATED_CATEGORIES_AUDIENCE',
       study_rule_audience: 'STUDY_RULE_AUDIENCE',
+      subscriber_segment: 'SUBSCRIBER_SEGMENT',
       video: 'VIDEO',
       website: 'WEBSITE',
     });
@@ -160,6 +166,26 @@ export default class CustomAudience extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/ads'
+    );
+  }
+
+  getSalts (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      CustomAudienceSalts,
+      fields,
+      params,
+      fetchFirstPage,
+      '/salts'
+    );
+  }
+
+  createSalt (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<CustomAudience> {
+    return this.createEdge(
+      '/salts',
+      fields,
+      params,
+      CustomAudience,
+      pathOverride,
     );
   }
 
