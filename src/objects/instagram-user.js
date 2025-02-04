@@ -9,10 +9,11 @@
  */
 
 import {AbstractCrudObject} from './../abstract-crud-object';
-import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
 import Business from './business';
+import AREffect from './ar-effect';
 import AdAccount from './ad-account';
+import IGUpcomingEvent from './ig-upcoming-event';
 
 /**
  * InstagramUser
@@ -26,6 +27,7 @@ export default class InstagramUser extends AbstractCrudObject {
       followed_by_count: 'followed_by_count',
       has_profile_picture: 'has_profile_picture',
       id: 'id',
+      ig_user_id: 'ig_user_id',
       is_private: 'is_private',
       is_published: 'is_published',
       media_count: 'media_count',
@@ -49,7 +51,7 @@ export default class InstagramUser extends AbstractCrudObject {
 
   getArEffects (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
-      AbstractObject,
+      AREffect,
       fields,
       params,
       fetchFirstPage,
@@ -73,6 +75,26 @@ export default class InstagramUser extends AbstractCrudObject {
       fields,
       params,
       InstagramUser,
+      pathOverride,
+    );
+  }
+
+  getUpcomingEvents (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      IGUpcomingEvent,
+      fields,
+      params,
+      fetchFirstPage,
+      '/upcoming_events'
+    );
+  }
+
+  createUpcomingEvent (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<IGUpcomingEvent> {
+    return this.createEdge(
+      '/upcoming_events',
+      fields,
+      params,
+      IGUpcomingEvent,
       pathOverride,
     );
   }

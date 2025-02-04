@@ -12,6 +12,9 @@ import {AbstractCrudObject} from './../abstract-crud-object';
 import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
 import UserAvailableCatalogs from './user-available-catalogs';
+import IGBCAdsPermission from './igbc-ads-permission';
+import BrandedContentShadowIGMediaID from './branded-content-shadow-ig-media-id';
+import BrandedContentShadowIGUserID from './branded-content-shadow-ig-user-id';
 import ShadowIGUserCatalogProductSearch from './shadow-ig-user-catalog-product-search';
 import ContentPublishingLimitResponse from './content-publishing-limit-response';
 import Dataset from './dataset';
@@ -35,6 +38,7 @@ export default class IGUser extends AbstractCrudObject {
       follows_count: 'follows_count',
       id: 'id',
       ig_id: 'ig_id',
+      legacy_instagram_user_id: 'legacy_instagram_user_id',
       media_count: 'media_count',
       mentioned_comment: 'mentioned_comment',
       mentioned_media: 'mentioned_media',
@@ -56,6 +60,63 @@ export default class IGUser extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/available_catalogs'
+    );
+  }
+
+  getBrandedContentAdPermissions (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      IGBCAdsPermission,
+      fields,
+      params,
+      fetchFirstPage,
+      '/branded_content_ad_permissions'
+    );
+  }
+
+  createBrandedContentAdPermission (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<IGBCAdsPermission> {
+    return this.createEdge(
+      '/branded_content_ad_permissions',
+      fields,
+      params,
+      IGBCAdsPermission,
+      pathOverride,
+    );
+  }
+
+  getBrandedContentAdvertisableMedias (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      BrandedContentShadowIGMediaID,
+      fields,
+      params,
+      fetchFirstPage,
+      '/branded_content_advertisable_medias'
+    );
+  }
+
+  deleteBrandedContentTagApproval (params: Object = {}): Promise<*> {
+    return super.deleteEdge(
+      '/branded_content_tag_approval',
+      params
+    );
+  }
+
+  getBrandedContentTagApproval (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      BrandedContentShadowIGUserID,
+      fields,
+      params,
+      fetchFirstPage,
+      '/branded_content_tag_approval'
+    );
+  }
+
+  createBrandedContentTagApproval (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<BrandedContentShadowIGUserID> {
+    return this.createEdge(
+      '/branded_content_tag_approval',
+      fields,
+      params,
+      BrandedContentShadowIGUserID,
+      pathOverride,
     );
   }
 
@@ -86,6 +147,16 @@ export default class IGUser extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/dataset'
+    );
+  }
+
+  createDataset (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<Dataset> {
+    return this.createEdge(
+      '/dataset',
+      fields,
+      params,
+      Dataset,
+      pathOverride,
     );
   }
 
@@ -206,6 +277,16 @@ export default class IGUser extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/tags'
+    );
+  }
+
+  createUpcomingEvent (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
+    return this.createEdge(
+      '/upcoming_events',
+      fields,
+      params,
+      null,
+      pathOverride,
     );
   }
 

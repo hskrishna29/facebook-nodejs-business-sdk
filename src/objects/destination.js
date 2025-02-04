@@ -9,9 +9,9 @@
  */
 
 import {AbstractCrudObject} from './../abstract-crud-object';
-import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
 import CatalogItemChannelsToIntegrityStatus from './catalog-item-channels-to-integrity-status';
+import OverrideDetails from './override-details';
 import DynamicVideoMetadata from './dynamic-video-metadata';
 
 /**
@@ -26,6 +26,12 @@ export default class Destination extends AbstractCrudObject {
       applinks: 'applinks',
       category_specific_fields: 'category_specific_fields',
       currency: 'currency',
+      custom_label_0: 'custom_label_0',
+      custom_label_1: 'custom_label_1',
+      custom_label_2: 'custom_label_2',
+      custom_number_0: 'custom_number_0',
+      custom_number_1: 'custom_number_1',
+      custom_number_2: 'custom_number_2',
       description: 'description',
       destination_id: 'destination_id',
       id: 'id',
@@ -35,6 +41,7 @@ export default class Destination extends AbstractCrudObject {
       price: 'price',
       price_change: 'price_change',
       sanitized_images: 'sanitized_images',
+      tags: 'tags',
       types: 'types',
       unit_price: 'unit_price',
       url: 'url',
@@ -59,16 +66,6 @@ export default class Destination extends AbstractCrudObject {
     });
   }
 
-  getAugmentedRealitiesMetadata (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
-      fields,
-      params,
-      fetchFirstPage,
-      '/augmented_realities_metadata'
-    );
-  }
-
   getChannelsToIntegrityStatus (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       CatalogItemChannelsToIntegrityStatus,
@@ -76,6 +73,16 @@ export default class Destination extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/channels_to_integrity_status'
+    );
+  }
+
+  getOverrideDetails (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      OverrideDetails,
+      fields,
+      params,
+      fetchFirstPage,
+      '/override_details'
     );
   }
 

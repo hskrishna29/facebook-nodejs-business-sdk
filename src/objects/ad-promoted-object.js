@@ -19,12 +19,14 @@ export default class AdPromotedObject extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
       application_id: 'application_id',
+      boosted_product_set_id: 'boosted_product_set_id',
       conversion_goal_id: 'conversion_goal_id',
       custom_conversion_id: 'custom_conversion_id',
       custom_event_str: 'custom_event_str',
       custom_event_type: 'custom_event_type',
       event_id: 'event_id',
       fundraiser_campaign_id: 'fundraiser_campaign_id',
+      lead_ads_form_event_source_type: 'lead_ads_form_event_source_type',
       mcme_conversion_id: 'mcme_conversion_id',
       object_store_url: 'object_store_url',
       offer_id: 'offer_id',
@@ -42,6 +44,8 @@ export default class AdPromotedObject extends AbstractCrudObject {
       product_set: 'product_set',
       product_set_id: 'product_set_id',
       retention_days: 'retention_days',
+      value_semantic_type: 'value_semantic_type',
+      variation: 'variation',
       whatsapp_phone_number: 'whatsapp_phone_number',
     });
   }

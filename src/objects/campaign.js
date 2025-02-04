@@ -58,6 +58,7 @@ export default class Campaign extends AbstractCrudObject {
       smart_promotion_type: 'smart_promotion_type',
       source_campaign: 'source_campaign',
       source_campaign_id: 'source_campaign_id',
+      source_recommendation_type: 'source_recommendation_type',
       special_ad_categories: 'special_ad_categories',
       special_ad_category: 'special_ad_category',
       special_ad_category_country: 'special_ad_category_country',
@@ -75,6 +76,7 @@ export default class Campaign extends AbstractCrudObject {
       cost_cap: 'COST_CAP',
       lowest_cost_without_cap: 'LOWEST_COST_WITHOUT_CAP',
       lowest_cost_with_bid_cap: 'LOWEST_COST_WITH_BID_CAP',
+      lowest_cost_with_min_roas: 'LOWEST_COST_WITH_MIN_ROAS',
     });
   }
   static get ConfiguredStatus (): Object {
@@ -168,6 +170,7 @@ export default class Campaign extends AbstractCrudObject {
     return Object.freeze({
       credit: 'CREDIT',
       employment: 'EMPLOYMENT',
+      financial_products_services: 'FINANCIAL_PRODUCTS_SERVICES',
       housing: 'HOUSING',
       issues_elections_politics: 'ISSUES_ELECTIONS_POLITICS',
       none: 'NONE',
@@ -439,6 +442,7 @@ export default class Campaign extends AbstractCrudObject {
     return Object.freeze({
       credit: 'CREDIT',
       employment: 'EMPLOYMENT',
+      financial_products_services: 'FINANCIAL_PRODUCTS_SERVICES',
       housing: 'HOUSING',
       issues_elections_politics: 'ISSUES_ELECTIONS_POLITICS',
       none: 'NONE',

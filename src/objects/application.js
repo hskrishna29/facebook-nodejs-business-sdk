@@ -18,7 +18,7 @@ import Business from './business';
 import Group from './group';
 import AdAccount from './ad-account';
 import DACheck from './da-check';
-import Event from './event';
+import AdsDataset from './ads-dataset';
 import NullNode from './null-node';
 
 /**
@@ -72,6 +72,7 @@ export default class Application extends AbstractCrudObject {
       deauth_callback_url: 'deauth_callback_url',
       default_share_mode: 'default_share_mode',
       description: 'description',
+      enigma_config: 'enigma_config',
       financial_id: 'financial_id',
       gdpv4_chrome_custom_tabs_enabled: 'gdpv4_chrome_custom_tabs_enabled',
       gdpv4_enabled: 'gdpv4_enabled',
@@ -194,17 +195,32 @@ export default class Application extends AbstractCrudObject {
       eymt: 'EYMT',
     });
   }
-  static get LoggingSource (): Object {
+  static get OwnerPermissions (): Object {
     return Object.freeze({
-      detection: 'DETECTION',
-      messenger_bot: 'MESSENGER_BOT',
+      develop: 'DEVELOP',
+      manage: 'MANAGE',
+      manage_extensions: 'MANAGE_EXTENSIONS',
+      manage_phone: 'MANAGE_PHONE',
+      manage_phone_assets: 'MANAGE_PHONE_ASSETS',
+      manage_templates: 'MANAGE_TEMPLATES',
+      messaging: 'MESSAGING',
+      view_cost: 'VIEW_COST',
+      view_phone_assets: 'VIEW_PHONE_ASSETS',
+      view_templates: 'VIEW_TEMPLATES',
     });
   }
-  static get LoggingTarget (): Object {
+  static get PartnerPermissions (): Object {
     return Object.freeze({
-      app: 'APP',
-      app_and_page: 'APP_AND_PAGE',
-      page: 'PAGE',
+      develop: 'DEVELOP',
+      manage: 'MANAGE',
+      manage_extensions: 'MANAGE_EXTENSIONS',
+      manage_phone: 'MANAGE_PHONE',
+      manage_phone_assets: 'MANAGE_PHONE_ASSETS',
+      manage_templates: 'MANAGE_TEMPLATES',
+      messaging: 'MESSAGING',
+      view_cost: 'VIEW_COST',
+      view_phone_assets: 'VIEW_PHONE_ASSETS',
+      view_templates: 'VIEW_TEMPLATES',
     });
   }
 
@@ -505,13 +521,13 @@ export default class Application extends AbstractCrudObject {
     );
   }
 
-  getEvents (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      Event,
+  createDomainReport (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
+    return this.createEdge(
+      '/domain_reports',
       fields,
       params,
-      fetchFirstPage,
-      '/events'
+      null,
+      pathOverride,
     );
   }
 
@@ -522,16 +538,6 @@ export default class Application extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/iap_purchases'
-    );
-  }
-
-  getInsightsPushSchedule (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
-      fields,
-      params,
-      fetchFirstPage,
-      '/insights_push_schedule'
     );
   }
 
@@ -547,11 +553,21 @@ export default class Application extends AbstractCrudObject {
 
   getLinkedDataset (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
-      AbstractObject,
+      AdsDataset,
       fields,
       params,
       fetchFirstPage,
       '/linked_dataset'
+    );
+  }
+
+  getMessageTemplates (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/message_templates'
     );
   }
 
@@ -621,16 +637,6 @@ export default class Application extends AbstractCrudObject {
       fields,
       params,
       null,
-      pathOverride,
-    );
-  }
-
-  createPageActivity (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<Application> {
-    return this.createEdge(
-      '/page_activities',
-      fields,
-      params,
-      Application,
       pathOverride,
     );
   }
@@ -742,6 +748,16 @@ export default class Application extends AbstractCrudObject {
     );
   }
 
+  getSubscriptions (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/subscriptions'
+    );
+  }
+
   createSubscription (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
     return this.createEdge(
       '/subscriptions',
@@ -759,6 +775,26 @@ export default class Application extends AbstractCrudObject {
       params,
       null,
       pathOverride,
+    );
+  }
+
+  createWhatsAppBusinessSolution (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<Application> {
+    return this.createEdge(
+      '/whatsapp_business_solution',
+      fields,
+      params,
+      Application,
+      pathOverride,
+    );
+  }
+
+  getWhatsAppBusinessSolutions (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/whatsapp_business_solutions'
     );
   }
 

@@ -9,9 +9,9 @@
  */
 
 import {AbstractCrudObject} from './../abstract-crud-object';
-import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
 import CatalogItemChannelsToIntegrityStatus from './catalog-item-channels-to-integrity-status';
+import OverrideDetails from './override-details';
 import DynamicVideoMetadata from './dynamic-video-metadata';
 
 /**
@@ -54,6 +54,11 @@ export default class Vehicle extends AbstractCrudObject {
       previous_currency: 'previous_currency',
       previous_price: 'previous_price',
       price: 'price',
+      product_priority_0: 'product_priority_0',
+      product_priority_1: 'product_priority_1',
+      product_priority_2: 'product_priority_2',
+      product_priority_3: 'product_priority_3',
+      product_priority_4: 'product_priority_4',
       sale_currency: 'sale_currency',
       sale_price: 'sale_price',
       sanitized_images: 'sanitized_images',
@@ -186,16 +191,6 @@ export default class Vehicle extends AbstractCrudObject {
     });
   }
 
-  getAugmentedRealitiesMetadata (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
-      fields,
-      params,
-      fetchFirstPage,
-      '/augmented_realities_metadata'
-    );
-  }
-
   getChannelsToIntegrityStatus (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       CatalogItemChannelsToIntegrityStatus,
@@ -203,6 +198,16 @@ export default class Vehicle extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/channels_to_integrity_status'
+    );
+  }
+
+  getOverrideDetails (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      OverrideDetails,
+      fields,
+      params,
+      fetchFirstPage,
+      '/override_details'
     );
   }
 

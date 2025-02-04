@@ -17,6 +17,7 @@ import AdAccount from './ad-account';
 import Album from './album';
 import AppRequestFormerRecipient from './app-request-former-recipient';
 import AppRequest from './app-request';
+import Application from './application';
 import BusinessAssetGroup from './business-asset-group';
 import ProductCatalog from './product-catalog';
 import Avatar from './avatar';
@@ -63,6 +64,7 @@ export default class User extends AbstractCrudObject {
       id: 'id',
       id_for_avatars: 'id_for_avatars',
       inspirational_people: 'inspirational_people',
+      instagram_user_self_asset: 'instagram_user_self_asset',
       install_type: 'install_type',
       installed: 'installed',
       is_guest_user: 'is_guest_user',
@@ -83,6 +85,7 @@ export default class User extends AbstractCrudObject {
       profile_pic: 'profile_pic',
       quotes: 'quotes',
       relationship_status: 'relationship_status',
+      religion: 'religion',
       shared_login_upgrade_required_by: 'shared_login_upgrade_required_by',
       short_name: 'short_name',
       significant_other: 'significant_other',
@@ -241,6 +244,16 @@ export default class User extends AbstractCrudObject {
     );
   }
 
+  getAssignedApplications (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      Application,
+      fields,
+      params,
+      fetchFirstPage,
+      '/assigned_applications'
+    );
+  }
+
   getAssignedBusinessAssetGroups (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       BusinessAssetGroup,
@@ -394,16 +407,6 @@ export default class User extends AbstractCrudObject {
       fields,
       params,
       FundraiserPersonToCharity,
-      pathOverride,
-    );
-  }
-
-  createGameTime (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
-    return this.createEdge(
-      '/game_times',
-      fields,
-      params,
-      null,
       pathOverride,
     );
   }

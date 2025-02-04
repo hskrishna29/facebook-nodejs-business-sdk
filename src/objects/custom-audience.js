@@ -84,11 +84,11 @@ export default class CustomAudience extends AbstractCrudObject {
       automotive_model: 'AUTOMOTIVE_MODEL',
       destination: 'DESTINATION',
       flight: 'FLIGHT',
+      generic: 'GENERIC',
       home_listing: 'HOME_LISTING',
       hotel: 'HOTEL',
       job: 'JOB',
       local_service_business: 'LOCAL_SERVICE_BUSINESS',
-      location_based_item: 'LOCATION_BASED_ITEM',
       media_title: 'MEDIA_TITLE',
       offline_product: 'OFFLINE_PRODUCT',
       product: 'PRODUCT',
@@ -103,6 +103,12 @@ export default class CustomAudience extends AbstractCrudObject {
       user_provided_only: 'USER_PROVIDED_ONLY',
     });
   }
+  static get SubscriptionInfo (): Object {
+    return Object.freeze({
+      messenger: 'MESSENGER',
+      whatsapp: 'WHATSAPP',
+    });
+  }
   static get Subtype (): Object {
     return Object.freeze({
       app: 'APP',
@@ -111,10 +117,12 @@ export default class CustomAudience extends AbstractCrudObject {
       claim: 'CLAIM',
       custom: 'CUSTOM',
       engagement: 'ENGAGEMENT',
+      exclusion: 'EXCLUSION',
       fox: 'FOX',
       lookalike: 'LOOKALIKE',
       managed: 'MANAGED',
       measurement: 'MEASUREMENT',
+      messenger_subscriber_list: 'MESSENGER_SUBSCRIBER_LIST',
       offline_conversion: 'OFFLINE_CONVERSION',
       partner: 'PARTNER',
       primary: 'PRIMARY',
@@ -123,6 +131,12 @@ export default class CustomAudience extends AbstractCrudObject {
       subscriber_segment: 'SUBSCRIBER_SEGMENT',
       video: 'VIDEO',
       website: 'WEBSITE',
+    });
+  }
+  static get UseForProducts (): Object {
+    return Object.freeze({
+      ads: 'ADS',
+      marketing_messages: 'MARKETING_MESSAGES',
     });
   }
   static get ActionSource (): Object {

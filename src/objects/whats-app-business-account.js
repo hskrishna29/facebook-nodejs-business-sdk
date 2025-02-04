@@ -12,7 +12,9 @@ import {AbstractCrudObject} from './../abstract-crud-object';
 import AbstractObject from './../abstract-object';
 import Cursor from './../cursor';
 import AssignedUser from './assigned-user';
+import Dataset from './dataset';
 import ProductCatalog from './product-catalog';
+import CTXPartnerAppWelcomeMessageFlow from './ctx-partner-app-welcome-message-flow';
 
 /**
  * WhatsAppBusinessAccount
@@ -24,6 +26,7 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
     return Object.freeze({
       account_review_status: 'account_review_status',
       analytics: 'analytics',
+      auth_international_rate_eligibility: 'auth_international_rate_eligibility',
       business_verification_status: 'business_verification_status',
       country: 'country',
       creation_time: 'creation_time',
@@ -31,12 +34,14 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
       health_status: 'health_status',
       id: 'id',
       is_enabled_for_insights: 'is_enabled_for_insights',
+      linked_commerce_account: 'linked_commerce_account',
       message_template_namespace: 'message_template_namespace',
       name: 'name',
       on_behalf_of_business_info: 'on_behalf_of_business_info',
       owner_business: 'owner_business',
       owner_business_info: 'owner_business_info',
       ownership_type: 'ownership_type',
+      primary_business_location: 'primary_business_location',
       primary_funding_id: 'primary_funding_id',
       purchase_order_number: 'purchase_order_number',
       status: 'status',
@@ -44,6 +49,20 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
     });
   }
 
+  static get BusinessVerificationStatus (): Object {
+    return Object.freeze({
+      expired: 'expired',
+      failed: 'failed',
+      ineligible: 'ineligible',
+      not_verified: 'not_verified',
+      pending: 'pending',
+      pending_need_more_info: 'pending_need_more_info',
+      pending_submission: 'pending_submission',
+      rejected: 'rejected',
+      revoked: 'revoked',
+      verified: 'verified',
+    });
+  }
   static get Tasks (): Object {
     return Object.freeze({
       develop: 'DEVELOP',
@@ -52,6 +71,7 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
       manage_phone: 'MANAGE_PHONE',
       manage_phone_assets: 'MANAGE_PHONE_ASSETS',
       manage_templates: 'MANAGE_TEMPLATES',
+      messaging: 'MESSAGING',
       view_cost: 'VIEW_COST',
       view_phone_assets: 'VIEW_PHONE_ASSETS',
       view_templates: 'VIEW_TEMPLATES',
@@ -64,12 +84,41 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
       utility: 'UTILITY',
     });
   }
+  static get DisplayFormat (): Object {
+    return Object.freeze({
+      order_details: 'ORDER_DETAILS',
+    });
+  }
+  static get ParameterFormat (): Object {
+    return Object.freeze({
+      named: 'NAMED',
+      positional: 'POSITIONAL',
+    });
+  }
   static get SubCategory (): Object {
     return Object.freeze({
-      custom: 'CUSTOM',
       order_details: 'ORDER_DETAILS',
       order_status: 'ORDER_STATUS',
     });
+  }
+  static get ProviderName (): Object {
+    return Object.freeze({
+      billdesk: 'BILLDESK',
+      payu: 'PAYU',
+      razorpay: 'RAZORPAY',
+      upi_vpa: 'UPI_VPA',
+      zaakpay: 'ZAAKPAY',
+    });
+  }
+
+  getActivities (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/activities'
+    );
   }
 
   deleteAssignedUsers (params: Object = {}): Promise<*> {
@@ -109,6 +158,16 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
     );
   }
 
+  getCallAnalytics (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/call_analytics'
+    );
+  }
+
   getConversationAnalytics (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       AbstractObject,
@@ -116,6 +175,26 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/conversation_analytics'
+    );
+  }
+
+  getDataset (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      Dataset,
+      fields,
+      params,
+      fetchFirstPage,
+      '/dataset'
+    );
+  }
+
+  createDataset (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<Dataset> {
+    return this.createEdge(
+      '/dataset',
+      fields,
+      params,
+      Dataset,
+      pathOverride,
     );
   }
 
@@ -145,6 +224,16 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
       fields,
       params,
       null,
+      pathOverride,
+    );
+  }
+
+  createGeneratePaymentConfigurationOauthLink (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<WhatsAppBusinessAccount> {
+    return this.createEdge(
+      '/generate_payment_configuration_oauth_link',
+      fields,
+      params,
+      WhatsAppBusinessAccount,
       pathOverride,
     );
   }
@@ -196,6 +285,16 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
     );
   }
 
+  createMigrateFlow (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<WhatsAppBusinessAccount> {
+    return this.createEdge(
+      '/migrate_flows',
+      fields,
+      params,
+      WhatsAppBusinessAccount,
+      pathOverride,
+    );
+  }
+
   createMigrateMessageTemplate (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<WhatsAppBusinessAccount> {
     return this.createEdge(
       '/migrate_message_templates',
@@ -203,6 +302,43 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
       params,
       WhatsAppBusinessAccount,
       pathOverride,
+    );
+  }
+
+  deletePaymentConfiguration (params: Object = {}): Promise<*> {
+    return super.deleteEdge(
+      '/payment_configuration',
+      params
+    );
+  }
+
+  getPaymentConfiguration (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/payment_configuration'
+    );
+  }
+
+  createPaymentConfiguration (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<WhatsAppBusinessAccount> {
+    return this.createEdge(
+      '/payment_configuration',
+      fields,
+      params,
+      WhatsAppBusinessAccount,
+      pathOverride,
+    );
+  }
+
+  getPaymentConfigurations (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/payment_configurations'
     );
   }
 
@@ -263,6 +399,36 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
     );
   }
 
+  createSetOboMobilityIntent (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
+    return this.createEdge(
+      '/set_obo_mobility_intent',
+      fields,
+      params,
+      null,
+      pathOverride,
+    );
+  }
+
+  createSetSolutionMigrationInTEnt (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<AbstractObject> {
+    return this.createEdge(
+      '/set_solution_migration_intent',
+      fields,
+      params,
+      null,
+      pathOverride,
+    );
+  }
+
+  getSolutions (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/solutions'
+    );
+  }
+
   deleteSubscribedApps (params: Object = {}): Promise<*> {
     return super.deleteEdge(
       '/subscribed_apps',
@@ -317,6 +483,16 @@ export default class WhatsAppBusinessAccount extends AbstractCrudObject {
       params,
       WhatsAppBusinessAccount,
       pathOverride,
+    );
+  }
+
+  getWelcomeMessageSequences (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      CTXPartnerAppWelcomeMessageFlow,
+      fields,
+      params,
+      fetchFirstPage,
+      '/welcome_message_sequences'
     );
   }
 

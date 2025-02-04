@@ -21,6 +21,7 @@ import HighDemandPeriod from './high-demand-period';
 import AdCampaignDeliveryEstimate from './ad-campaign-delivery-estimate';
 import AdsInsights from './ads-insights';
 import AdReportRun from './ad-report-run';
+import MessageDeliveryEstimate from './message-delivery-estimate';
 import TargetingSentenceLine from './targeting-sentence-line';
 
 /**
@@ -42,6 +43,7 @@ export default class AdSet extends AbstractCrudObject {
       bid_info: 'bid_info',
       bid_strategy: 'bid_strategy',
       billing_event: 'billing_event',
+      brand_safety_config: 'brand_safety_config',
       budget_remaining: 'budget_remaining',
       campaign: 'campaign',
       campaign_active_time: 'campaign_active_time',
@@ -71,6 +73,8 @@ export default class AdSet extends AbstractCrudObject {
       lifetime_imps: 'lifetime_imps',
       lifetime_min_spend_target: 'lifetime_min_spend_target',
       lifetime_spend_cap: 'lifetime_spend_cap',
+      max_budget_spend_percentage: 'max_budget_spend_percentage',
+      min_budget_spend_percentage: 'min_budget_spend_percentage',
       multi_optimization_goal_weight: 'multi_optimization_goal_weight',
       name: 'name',
       optimization_goal: 'optimization_goal',
@@ -79,6 +83,8 @@ export default class AdSet extends AbstractCrudObject {
       promoted_object: 'promoted_object',
       recommendations: 'recommendations',
       recurring_budget_semantics: 'recurring_budget_semantics',
+      regional_regulated_categories: 'regional_regulated_categories',
+      regional_regulation_identities: 'regional_regulation_identities',
       review_feedback: 'review_feedback',
       rf_prediction_id: 'rf_prediction_id',
       source_adset: 'source_adset',
@@ -99,6 +105,7 @@ export default class AdSet extends AbstractCrudObject {
       cost_cap: 'COST_CAP',
       lowest_cost_without_cap: 'LOWEST_COST_WITHOUT_CAP',
       lowest_cost_with_bid_cap: 'LOWEST_COST_WITH_BID_CAP',
+      lowest_cost_with_min_roas: 'LOWEST_COST_WITH_MIN_ROAS',
     });
   }
   static get BillingEvent (): Object {
@@ -149,12 +156,14 @@ export default class AdSet extends AbstractCrudObject {
       landing_page_views: 'LANDING_PAGE_VIEWS',
       lead_generation: 'LEAD_GENERATION',
       link_clicks: 'LINK_CLICKS',
+      meaningful_call_attempt: 'MEANINGFUL_CALL_ATTEMPT',
       messaging_appointment_conversion: 'MESSAGING_APPOINTMENT_CONVERSION',
       messaging_purchase_conversion: 'MESSAGING_PURCHASE_CONVERSION',
       none: 'NONE',
       offsite_conversions: 'OFFSITE_CONVERSIONS',
       page_likes: 'PAGE_LIKES',
       post_engagement: 'POST_ENGAGEMENT',
+      profile_visit: 'PROFILE_VISIT',
       quality_call: 'QUALITY_CALL',
       quality_lead: 'QUALITY_LEAD',
       reach: 'REACH',
@@ -175,26 +184,26 @@ export default class AdSet extends AbstractCrudObject {
   }
   static get DatePreset (): Object {
     return Object.freeze({
-      data_maximum: 'data_maximum',
-      last_14d: 'last_14d',
-      last_28d: 'last_28d',
-      last_30d: 'last_30d',
-      last_3d: 'last_3d',
-      last_7d: 'last_7d',
-      last_90d: 'last_90d',
-      last_month: 'last_month',
-      last_quarter: 'last_quarter',
-      last_week_mon_sun: 'last_week_mon_sun',
-      last_week_sun_sat: 'last_week_sun_sat',
-      last_year: 'last_year',
-      maximum: 'maximum',
-      this_month: 'this_month',
-      this_quarter: 'this_quarter',
-      this_week_mon_today: 'this_week_mon_today',
-      this_week_sun_today: 'this_week_sun_today',
-      this_year: 'this_year',
-      today: 'today',
-      yesterday: 'yesterday',
+      data_maximum: 'DATA_MAXIMUM',
+      last_14d: 'LAST_14D',
+      last_28d: 'LAST_28D',
+      last_30d: 'LAST_30D',
+      last_3d: 'LAST_3D',
+      last_7d: 'LAST_7D',
+      last_90d: 'LAST_90D',
+      last_month: 'LAST_MONTH',
+      last_quarter: 'LAST_QUARTER',
+      last_week_mon_sun: 'LAST_WEEK_MON_SUN',
+      last_week_sun_sat: 'LAST_WEEK_SUN_SAT',
+      last_year: 'LAST_YEAR',
+      maximum: 'MAXIMUM',
+      this_month: 'THIS_MONTH',
+      this_quarter: 'THIS_QUARTER',
+      this_week_mon_today: 'THIS_WEEK_MON_TODAY',
+      this_week_sun_today: 'THIS_WEEK_SUN_TODAY',
+      this_year: 'THIS_YEAR',
+      today: 'TODAY',
+      yesterday: 'YESTERDAY',
     });
   }
   static get DestinationType (): Object {
@@ -202,9 +211,23 @@ export default class AdSet extends AbstractCrudObject {
       app: 'APP',
       applinks_automatic: 'APPLINKS_AUTOMATIC',
       facebook: 'FACEBOOK',
+      facebook_page: 'FACEBOOK_PAGE',
+      instagram_direct: 'INSTAGRAM_DIRECT',
+      instagram_profile: 'INSTAGRAM_PROFILE',
+      instagram_profile_and_facebook_page: 'INSTAGRAM_PROFILE_AND_FACEBOOK_PAGE',
+      messaging_instagram_direct_messenger: 'MESSAGING_INSTAGRAM_DIRECT_MESSENGER',
+      messaging_instagram_direct_messenger_whatsapp: 'MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP',
+      messaging_instagram_direct_whatsapp: 'MESSAGING_INSTAGRAM_DIRECT_WHATSAPP',
+      messaging_messenger_whatsapp: 'MESSAGING_MESSENGER_WHATSAPP',
       messenger: 'MESSENGER',
-      undefined: 'UNDEFINED',
+      on_ad: 'ON_AD',
+      on_event: 'ON_EVENT',
+      on_page: 'ON_PAGE',
+      on_post: 'ON_POST',
+      on_video: 'ON_VIDEO',
+      shop_automatic: 'SHOP_AUTOMATIC',
       website: 'WEBSITE',
+      whatsapp: 'WHATSAPP',
     });
   }
   static get ExecutionOptions (): Object {
@@ -242,10 +265,19 @@ export default class AdSet extends AbstractCrudObject {
       video_sound_on: 'VIDEO_SOUND_ON',
     });
   }
+  static get RegionalRegulatedCategories (): Object {
+    return Object.freeze({
+      value_0: '0',
+      value_1: '1',
+      value_2: '2',
+      value_3: '3',
+    });
+  }
   static get TuneForCategory (): Object {
     return Object.freeze({
       credit: 'CREDIT',
       employment: 'EMPLOYMENT',
+      financial_products_services: 'FINANCIAL_PRODUCTS_SERVICES',
       housing: 'HOUSING',
       issues_elections_politics: 'ISSUES_ELECTIONS_POLITICS',
       none: 'NONE',
@@ -400,6 +432,16 @@ export default class AdSet extends AbstractCrudObject {
       params,
       AdReportRun,
       pathOverride,
+    );
+  }
+
+  getMessageDeliveryEstimate (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      MessageDeliveryEstimate,
+      fields,
+      params,
+      fetchFirstPage,
+      '/message_delivery_estimate'
     );
   }
 
