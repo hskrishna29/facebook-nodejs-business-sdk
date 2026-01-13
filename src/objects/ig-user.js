@@ -18,7 +18,10 @@ import IGBCAdsPermission from './igbc-ads-permission';
 import BrandedContentShadowIGMediaID from './branded-content-shadow-ig-media-id';
 import BrandedContentShadowIGUserID from './branded-content-shadow-ig-user-id';
 import ShadowIGUserCatalogProductSearch from './shadow-ig-user-catalog-product-search';
+import ShadowIGUserCollaborationInvites from './shadow-ig-user-collaboration-invites';
+import ThreadsUser from './threads-user';
 import ContentPublishingLimitResponse from './content-publishing-limit-response';
+import IGUserExportForCAM from './ig-user-export-for-cam';
 import Dataset from './dataset';
 import InstagramInsightsResult from './instagram-insights-result';
 import IGMedia from './ig-media';
@@ -26,6 +29,7 @@ import UserPageOneTimeOptInTokenSettings from './user-page-one-time-opt-in-token
 import IGShoppingProductAppeal from './ig-shopping-product-appeal';
 import ShadowIGHashtag from './shadow-ig-hashtag';
 import IGUpcomingEvent from './ig-upcoming-event';
+import ShadowIGUserCTXPartnerAppWelcomeMessageFlow from './shadow-ig-user-ctx-partner-app-welcome-message-flow';
 
 /**
  * IGUser
@@ -165,6 +169,26 @@ export default class IGUser extends AbstractCrudObject {
     );
   }
 
+  getCollaborationInvites (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      ShadowIGUserCollaborationInvites,
+      fields,
+      params,
+      fetchFirstPage,
+      '/collaboration_invites'
+    );
+  }
+
+  getConnectedThreadsUser (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      ThreadsUser,
+      fields,
+      params,
+      fetchFirstPage,
+      '/connected_threads_user'
+    );
+  }
+
   getContentPublishingLimit (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       ContentPublishingLimitResponse,
@@ -172,6 +196,16 @@ export default class IGUser extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/content_publishing_limit'
+    );
+  }
+
+  getCreatorMarketPlaceCreators (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      IGUserExportForCAM,
+      fields,
+      params,
+      fetchFirstPage,
+      '/creator_marketplace_creators'
     );
   }
 
@@ -202,6 +236,26 @@ export default class IGUser extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/insights'
+    );
+  }
+
+  getInstagramBackedThreadsUser (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      ThreadsUser,
+      fields,
+      params,
+      fetchFirstPage,
+      '/instagram_backed_threads_user'
+    );
+  }
+
+  createInstagramBackedThreadsUser (fields: Array<string>, params: Object = {}, pathOverride?: ?string = null): Promise<ThreadsUser> {
+    return this.createEdge(
+      '/instagram_backed_threads_user',
+      fields,
+      params,
+      ThreadsUser,
+      pathOverride,
     );
   }
 
@@ -332,6 +386,16 @@ export default class IGUser extends AbstractCrudObject {
       params,
       null,
       pathOverride,
+    );
+  }
+
+  getWelcomeMessageFlows (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      ShadowIGUserCTXPartnerAppWelcomeMessageFlow,
+      fields,
+      params,
+      fetchFirstPage,
+      '/welcome_message_flows'
     );
   }
 

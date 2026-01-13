@@ -11,15 +11,14 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * AdsPixelCAPISetupQuality
+ * ApacMonSellerStatusAPIContainer
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class AdsPixelCAPISetupQuality extends AbstractCrudObject {
+export default class ApacMonSellerStatusAPIContainer extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      event_match_quality: 'event_match_quality',
-      event_name: 'event_name',
+      structured_messaging_commerce: 'structured_messaging_commerce',
     });
   }
 

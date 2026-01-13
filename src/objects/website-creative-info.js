@@ -11,32 +11,22 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * EventTour
+ * WebsiteCreativeInfo
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class EventTour extends AbstractCrudObject {
+export default class WebsiteCreativeInfo extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      description: 'description',
-      dominant_color: 'dominant_color',
-      end_time: 'end_time',
       id: 'id',
-      is_past: 'is_past',
-      last_event_timestamp: 'last_event_timestamp',
-      name: 'name',
-      num_events: 'num_events',
-      photo: 'photo',
-      scheduled_publish_timestamp: 'scheduled_publish_timestamp',
-      start_time: 'start_time',
-      ticketing_uri: 'ticketing_uri',
-      video: 'video',
+      image_urls: 'image_urls',
+      link_url: 'link_url',
     });
   }
 
 
   
-  get (fields: Array<string>, params: Object = {}): EventTour {
+  get (fields: Array<string>, params: Object = {}): WebsiteCreativeInfo {
     // $FlowFixMe : Support Generic Types
     return this.read(
       fields,

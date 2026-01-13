@@ -20,6 +20,7 @@ export default class OpenBridgeConfiguration extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
       active: 'active',
+      browser_agent: 'browser_agent',
       cloud_provider: 'cloud_provider',
       cloud_region: 'cloud_region',
       destination_id: 'destination_id',
@@ -31,8 +32,12 @@ export default class OpenBridgeConfiguration extends AbstractCrudObject {
       instance_id: 'instance_id',
       instance_version: 'instance_version',
       is_sgw_instance: 'is_sgw_instance',
+      is_sgw_pixel_from_meta_pixel: 'is_sgw_pixel_from_meta_pixel',
       partner_name: 'partner_name',
       pixel_id: 'pixel_id',
+      sgw_account_id: 'sgw_account_id',
+      sgw_instance_url: 'sgw_instance_url',
+      sgw_pixel_id: 'sgw_pixel_id',
     });
   }
 

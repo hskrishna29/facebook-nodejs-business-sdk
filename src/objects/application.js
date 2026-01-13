@@ -511,6 +511,16 @@ export default class Application extends AbstractCrudObject {
     );
   }
 
+  getConnectedClientBusinesses (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      Business,
+      fields,
+      params,
+      fetchFirstPage,
+      '/connected_client_businesses'
+    );
+  }
+
   getDaChecks (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       DACheck,
@@ -558,16 +568,6 @@ export default class Application extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/linked_dataset'
-    );
-  }
-
-  getMessageTemplates (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
-      fields,
-      params,
-      fetchFirstPage,
-      '/message_templates'
     );
   }
 
@@ -688,6 +688,26 @@ export default class Application extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/server_domain_infos'
+    );
+  }
+
+  getSgwDatasetStatus (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/sgw_dataset_status'
+    );
+  }
+
+  getSgwInstallDeferralLink (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/sgw_install_deferral_link'
     );
   }
 

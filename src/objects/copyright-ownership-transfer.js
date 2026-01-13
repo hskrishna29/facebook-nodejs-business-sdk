@@ -11,30 +11,26 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * InstagramCarousel
+ * CopyrightOwnershipTransfer
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class InstagramCarousel extends AbstractCrudObject {
+export default class CopyrightOwnershipTransfer extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      caption_text: 'caption_text',
-      comment_count: 'comment_count',
-      content_type: 'content_type',
-      display_url: 'display_url',
+      assets: 'assets',
       id: 'id',
-      ig_media_id: 'ig_media_id',
-      like_count: 'like_count',
-      owner_instagram_user: 'owner_instagram_user',
-      permalink: 'permalink',
-      taken_at: 'taken_at',
-      video_url: 'video_url',
+      receiving_rights_holder: 'receiving_rights_holder',
+      sending_rights_holder: 'sending_rights_holder',
+      status: 'status',
+      transfer_territories: 'transfer_territories',
+      transfer_time: 'transfer_time',
     });
   }
 
 
   
-  get (fields: Array<string>, params: Object = {}): InstagramCarousel {
+  get (fields: Array<string>, params: Object = {}): CopyrightOwnershipTransfer {
     // $FlowFixMe : Support Generic Types
     return this.read(
       fields,

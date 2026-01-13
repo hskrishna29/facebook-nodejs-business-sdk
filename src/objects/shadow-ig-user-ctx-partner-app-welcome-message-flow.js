@@ -11,30 +11,22 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * SplitTestConfig
+ * ShadowIGUserCTXPartnerAppWelcomeMessageFlow
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class SplitTestConfig extends AbstractCrudObject {
+export default class ShadowIGUserCTXPartnerAppWelcomeMessageFlow extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      budget: 'budget',
-      early_winner_declaration_enabled: 'early_winner_declaration_enabled',
-      end_time: 'end_time',
-      splits: 'splits',
-      start_time: 'start_time',
-      test_variable: 'test_variable',
+      compatible_platforms: 'compatible_platforms',
+      eligible_platforms: 'eligible_platforms',
       id: 'id',
+      is_ig_only_flow: 'is_ig_only_flow',
+      is_used_in_ad: 'is_used_in_ad',
+      last_update_time: 'last_update_time',
+      name: 'name',
+      welcome_message_flow: 'welcome_message_flow',
     });
   }
 
-
-  
-  get (fields: Array<string>, params: Object = {}): SplitTestConfig {
-    // $FlowFixMe : Support Generic Types
-    return this.read(
-      fields,
-      params
-    );
-  }
 }

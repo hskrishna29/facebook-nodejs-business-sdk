@@ -25,6 +25,8 @@ export default class Vehicle extends AbstractCrudObject {
       address: 'address',
       applinks: 'applinks',
       availability: 'availability',
+      availability_circle_radius: 'availability_circle_radius',
+      availability_circle_radius_unit: 'availability_circle_radius_unit',
       body_style: 'body_style',
       category_specific_fields: 'category_specific_fields',
       condition: 'condition',
@@ -72,6 +74,7 @@ export default class Vehicle extends AbstractCrudObject {
       sale_price: 'sale_price',
       sanitized_images: 'sanitized_images',
       state_of_vehicle: 'state_of_vehicle',
+      tags: 'tags',
       title: 'title',
       transmission: 'transmission',
       trim: 'trim',
@@ -108,6 +111,7 @@ export default class Vehicle extends AbstractCrudObject {
       available: 'AVAILABLE',
       not_available: 'NOT_AVAILABLE',
       pending: 'PENDING',
+      unknown: 'UNKNOWN',
     });
   }
   static get BodyStyle (): Object {

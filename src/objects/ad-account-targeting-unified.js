@@ -87,6 +87,7 @@ export default class AdAccountTargetingUnified extends AbstractCrudObject {
   }
   static get RegulatedCountries (): Object {
     return Object.freeze({
+      ac: 'AC',
       ad: 'AD',
       ae: 'AE',
       af: 'AF',
@@ -367,6 +368,7 @@ export default class AdAccountTargetingUnified extends AbstractCrudObject {
       custom_audiences: 'custom_audiences',
       device_platforms: 'device_platforms',
       direct_install_devices: 'direct_install_devices',
+      dt_consolidation_state: 'dt_consolidation_state',
       dynamic_audience_ids: 'dynamic_audience_ids',
       education_majors: 'education_majors',
       education_schools: 'education_schools',
@@ -414,11 +416,13 @@ export default class AdAccountTargetingUnified extends AbstractCrudObject {
       home_type: 'home_type',
       home_value: 'home_value',
       household_composition: 'household_composition',
+      household_income: 'household_income',
       id: 'id',
       income: 'income',
       industries: 'industries',
       instagram_hashtags: 'instagram_hashtags',
       instagram_positions: 'instagram_positions',
+      install_state_application: 'install_state_application',
       instream_video_skippable_excluded: 'instream_video_skippable_excluded',
       instream_video_sponsorship_placements: 'instream_video_sponsorship_placements',
       interest_defaults_source: 'interest_defaults_source',
@@ -463,6 +467,7 @@ export default class AdAccountTargetingUnified extends AbstractCrudObject {
       topic: 'topic',
       trending: 'trending',
       user_adclusters: 'user_adclusters',
+      user_age_unknown: 'user_age_unknown',
       user_device: 'user_device',
       user_event: 'user_event',
       user_os: 'user_os',

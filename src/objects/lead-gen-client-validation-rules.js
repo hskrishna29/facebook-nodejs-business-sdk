@@ -11,25 +11,17 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * AvatarProfilePicture
+ * LeadGenClientValidationRules
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class AvatarProfilePicture extends AbstractCrudObject {
+export default class LeadGenClientValidationRules extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      id: 'id',
-      url: 'url',
+      exclude_emoji_and_special_chars_enabled: 'exclude_emoji_and_special_chars_enabled',
+      max_length_value: 'max_length_value',
+      min_length_value: 'min_length_value',
     });
   }
 
-
-  
-  get (fields: Array<string>, params: Object = {}): AvatarProfilePicture {
-    // $FlowFixMe : Support Generic Types
-    return this.read(
-      fields,
-      params
-    );
-  }
 }

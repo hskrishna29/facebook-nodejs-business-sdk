@@ -11,18 +11,18 @@
 import {AbstractCrudObject} from './../abstract-crud-object';
 
 /**
- * BespokePartnerGuidanceLaser
+ * BrandedContentFBPromodeUser
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class BespokePartnerGuidanceLaser extends AbstractCrudObject {
+export default class BrandedContentFBPromodeUser extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      business: 'business',
-      campaign_group: 'campaign_group',
-      cpa_improvement: 'cpa_improvement',
-      guidance_type: 'guidance_type',
-      id: 'id',
+      delegate_page_for_ads_only_id: 'delegate_page_for_ads_only_id',
+      is_iabp: 'is_iabp',
+      is_managed: 'is_managed',
+      name: 'name',
+      profile_picture_url: 'profile_picture_url',
     });
   }
 

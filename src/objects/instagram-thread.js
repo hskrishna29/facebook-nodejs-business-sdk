@@ -9,35 +9,25 @@
  */
 
 import {AbstractCrudObject} from './../abstract-crud-object';
-import AbstractObject from './../abstract-object';
-import Cursor from './../cursor';
 
 /**
- * AdsValueAdjustmentRule
+ * InstagramThread
  * @extends AbstractCrudObject
  * @see {@link https://developers.facebook.com/docs/marketing-api/}
  */
-export default class AdsValueAdjustmentRule extends AbstractCrudObject {
+export default class InstagramThread extends AbstractCrudObject {
   static get Fields (): Object {
     return Object.freeze({
-      base_value: 'base_value',
+      folder: 'folder',
       id: 'id',
+      participants: 'participants',
+      updated_time: 'updated_time',
     });
   }
 
 
-  getCriterias (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
-    return this.getEdge(
-      AbstractObject,
-      fields,
-      params,
-      fetchFirstPage,
-      '/criterias'
-    );
-  }
-
   
-  get (fields: Array<string>, params: Object = {}): AdsValueAdjustmentRule {
+  get (fields: Array<string>, params: Object = {}): InstagramThread {
     // $FlowFixMe : Support Generic Types
     return this.read(
       fields,

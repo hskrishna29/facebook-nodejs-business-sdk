@@ -39,6 +39,16 @@ export default class IGUserForIGOnlyAPI extends AbstractCrudObject {
   }
 
 
+  getBusinessMessagingFeatureStatus (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
+    return this.getEdge(
+      AbstractObject,
+      fields,
+      params,
+      fetchFirstPage,
+      '/business_messaging_feature_status'
+    );
+  }
+
   getContentPublishingLimit (fields: Array<string>, params: Object = {}, fetchFirstPage: boolean = true): Cursor | Promise<*> {
     return this.getEdge(
       ContentPublishingLimitResponse,
@@ -210,6 +220,13 @@ export default class IGUserForIGOnlyAPI extends AbstractCrudObject {
       params,
       fetchFirstPage,
       '/tags'
+    );
+  }
+
+  deleteWelcomeMessageFlows (params: Object = {}): Promise<*> {
+    return super.deleteEdge(
+      '/welcome_message_flows',
+      params
     );
   }
 
